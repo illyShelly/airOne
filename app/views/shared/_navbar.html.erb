@@ -1,0 +1,47 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <%= link_to "#", class: "navbar-brand" do %>
+  <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+  <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <!-- user sign_in -->
+      <% if user_signed_in? %>
+        <li class="nav-item active">
+          <%= link_to "Home", "#", class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Messages", "#", class: "nav-link" %>
+        </li>
+        <li class="nav-item dropdown">
+          <%= image_tag "https://avatars0.githubusercontent.com/u/26350915?s=460&v=4", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <p class="dropdown-item"> <%= current_user.email %></p>
+            <%= link_to "Manage Listings", "#", class: "dropdown-item" %>
+            <%= link_to "List Your Space", "#", class: "dropdown-item" %>
+            <%= link_to "Your Reservations", "#", class: "dropdown-item" %>
+            <%= link_to "Your Trips", "#", class: "dropdown-item" %>
+            <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </li>
+      <% else %>
+      <!-- user not logged_in -->
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!--     <%#= link_to "#" do %>
+    <i class="fa fa-user"></i> <%#= t(".profile", default: "Profile") %>
+<li>
+  <%#= link_to destroy_user_session_path, method: :delete do %>
+    <i class="fa fa-sign-out"></i>  <%#= t(".sign_out", default: "Log out") %>
+</li>
+Login link (when logged out) -->
+<%#= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>

@@ -1,6 +1,22 @@
+// .alert {
+//   position: fixed;
+//   bottom: 16px;
+//   right: 16px;
+//   z-index: 1000;
+// }
+
 .alert {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  z-index: 1000;
+  margin: 0;
+  text-align: center;
+  color: white;
+  border: none;
+  font-weight: lighter;
+}
+.alert-info {
+  background: $green;
+  background: linear-gradient(to right, #90ffff, #000000);
+}
+.alert-warning {
+  background: $red;
+  background: linear-gradient(to right, #2b2424, #da0266);
 }
