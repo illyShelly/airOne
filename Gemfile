@@ -17,7 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 
 gem 'webpacker', '~> 4.x'
-gem 'autoprefixer-rails'
+gem 'autoprefixer-rails', '~> 9.5.1'
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'devise'
 # Use CoffeeScript for .coffee assets and views
