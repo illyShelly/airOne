@@ -18,7 +18,7 @@
         <li class="nav-item dropdown">
           <%= image_tag "https://avatars0.githubusercontent.com/u/26350915?s=460&v=4", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <p class="dropdown-item"> <%= current_user.email %></p>
+            <p class="dropdown-item"> Hello, <%= current_user.fullname %>!</p>
             <%= link_to "Manage Listings", "#", class: "dropdown-item" %>
             <%= link_to "List Your Space", "#", class: "dropdown-item" %>
             <%= link_to "Your Reservations", "#", class: "dropdown-item" %>
