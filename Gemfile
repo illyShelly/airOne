@@ -21,7 +21,7 @@ gem 'autoprefixer-rails', '~> 9.5.1'
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'devise'
 gem 'dotenv-rails', groups: [:development, :test]
-
+gem 'omniauth-facebook'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
