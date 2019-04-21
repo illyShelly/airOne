@@ -12,9 +12,15 @@
       </div>
 
       <% if devise_mapping.rememberable? %>
-        <div class="form-group">
-          <%= f.check_box :remember_me %> Remember Me
-          <%#= f.label :remember_me, class: "form-check-label"%>
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.check_box :remember_me %><!--  Remember Me -->
+            <%= f.label :remember_me, class: "form-check-label"%>
+          </div>
+          <!-- forget password link -->
+          <div class="col-md-6 text-align-right">
+            <%= link_to "Forgot password", new_user_password_path %>
+          </div>
         </div>
       <% end %>
       <br>
@@ -23,8 +29,7 @@
       </div>
     <% end %>
 
-    <br>
-    <%= render "devise/shared/links" %>
+    <%#= render "devise/shared/links" %>
 
   </div>
 </div>
