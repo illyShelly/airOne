@@ -7,7 +7,9 @@ Rails.application.routes.draw do
              path_names: { sign_in: 'login', sign_out: 'logout', edit: 'profile', sign_up: 'registration'},
              controllers: { omniauth_callbacks: 'omniauth_callbacks', registration: 'registration' }
 # devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
+  resources :users, only: [:show]
 end
 
 # for devise path: '' -> is not necessary write /users/signup...
 # deleted 'user' from controller name and path: 'user/omniauth_callbacks'
+# show for user => rest path manage devise

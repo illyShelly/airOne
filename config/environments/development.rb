@@ -32,7 +32,8 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   # changed for mailer
-  config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
 
@@ -71,13 +72,14 @@ Rails.application.configure do
   #   authentication: :login,
   #   enable_starttls_auto: true
   # }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: 'smtp.mailgun.org',
-    port: 587,
-    domain: 'sandbox5f2fe1e80fc1433998aafcd62537c5c2.mailgun.org',
-    authentication: 'plain',
-    user_name: ENV['MAILGUN_ADDRESS'],
-    password: ENV['MAILGUN_PASSWORD']
-  }
+
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.mailgun.org',
+  #   port: 587,
+  #   domain: 'sandbox5f2fe1e80fc1433998aafcd62537c5c2.mailgun.org',
+  #   authentication: 'plain',
+  #   user_name: ENV['MAILGUN_ADDRESS'],
+  #   password: ENV['MAILGUN_PASSWORD']
+  # }
 end
