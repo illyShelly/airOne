@@ -97,15 +97,15 @@ Rails.application.configure do
   # added for mailing in production
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: "http://airone-illyshelly.herokuapp.com" }
-  config.action_mailer.smtp_settings = {
-    # address: 'smtp.mailgun.org',
-    # port: 587,
-    # domain: 'sandbox5f2fe1e80fc1433998aafcd62537c5c2.mailgun.org',
-    # authentication: 'plain',
-    # user_name: ENV['MAILGUN_ADDRESS'],
-    # password: ENV['MAILGUN_PASSWORD']
-    user_name: 'postmaster@sandbox5f2fe1e80fc1433998aafcd62537c5c2.mailgun.org',
-    # password: ENV['MAILGUN_PASSWORD']
-    password: 'b04425aa58adcb79eaa937fa24a661b1-3fb021d1-8d7d1633'
-  }
+  # config.action_mailer.smtp_settings = {
+  #   # address: 'smtp.mailgun.org',
+  #   # port: 587,
+  #   # domain: 'sandbox5f2fe1e80fc1433998aafcd62537c5c2.mailgun.org',
+  #   # authentication: 'plain',
+  #   # user_name: ENV['MAILGUN_ADDRESS'],
+  #   # password: ENV['MAILGUN_PASSWORD']
+  #   user_name: 'postmaster@sandbox5f2fe1e80fc1433998aafcd62537c5c2.mailgun.org',
+  #   # password: ENV['MAILGUN_PASSWORD']
+  #   password: 'b04425aa58adcb79eaa937fa24a661b1-3fb021d1-8d7d1633'
+  # }
 end
