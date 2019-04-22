@@ -77,9 +77,7 @@ Rails.application.configure do
     port: 587,
     domain: 'sandbox5f2fe1e80fc1433998aafcd62537c5c2.mailgun.org',
     authentication: 'plain',
-    user_name: 'postmaster@sandbox5f2fe1e80fc1433998aafcd62537c5c2.mailgun.org',
-    password: 'b04425aa58adcb79eaa937fa24a661b1-3fb021d1-8d7d1633'
+    user_name: ENV['MAILGUN_ADDRESS'],
+    password: ENV['MAILGUN_PASSWORD']
   }
 end
-# password: ENV['MAILGUN_PASSWORD']
-# user_name: ENV['MAILGUN_ADDRESS'],
