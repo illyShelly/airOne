@@ -20,7 +20,7 @@
           <div class="container">
 
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-              <!-- <= render "devise/shared/error_messages", resource: resource > -->
+              <%= render "devise/shared/error_messages", resource: resource %>
               <div class="form-group">
                 <%= f.text_field :fullname, autofocus: true, autocomplete: "fullname", placeholder: "John Smith", class: "form-control" %>
               </div>
@@ -31,7 +31,7 @@
 
               <!-- diffrent type, define columns and rows -->
               <div class="form-group">
-                <%= f.text_area :description, rows: 5, cols: 25, autofocus: true, placeholder: "Description", autocomplete: "description",class: "form-control" %>
+                <%= f.text_area :description, rows: 5, cols: 25, autofocus: true, placeholder: "Description", class: "form-control" %>
               </div>
 
               <div class="form-group">
@@ -39,13 +39,15 @@
               </div>
 
             <!-- Confirmation email -->
-              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <!-- removed -->
+              <%if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                 <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
               <% end %>
 
               <div class="form-group">
                 <span>Do you want to change password?</span>
-                <%= f.password_field :password, autocomplete: "new-password", placeholder: "new password",class: "form-control" %>
+                <!-- let autocomplete off -->
+                <%= f.password_field :password, autocomplete: "off", placeholder: "new password",class: "form-control" %>
                 <% if @minimum_password_length %>
                   <br />
                   <em><%= @minimum_password_length %> characters minimum</em>
@@ -53,7 +55,7 @@
               </div>
 
               <div class="form-group">
-                <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "confirm new password", class: "form-control" %>
+                <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "confirm new password", class: "form-control" %>
               </div>
 
           <!--     <div class="form-group">
