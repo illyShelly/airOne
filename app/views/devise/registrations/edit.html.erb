@@ -1,52 +1,82 @@
-<div class="row">
-  <div class="col-md-4 offset-md-4">
+<%= render "shared/devise_messages", resource: resource %>
 
-    <!-- <h2 class="text-center">Edit <%#= resource_name.to_s.humanize %></h2> -->
-    <h2 class="text-center">Profile</h2>
+<div class="container">
 
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-
-        <div class="form-group">
-          <%= f.text_field :fullname, autofocus: true, autocomplete: "email", placeholder: "John Smith", class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-        </div>
-
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
-
-        <div class="form-group">
-          <span>Do you want to change password?</span>
-          <%= f.password_field :password, autocomplete: "new-password", placeholder: "new password",class: "form-control" %>
-          <!-- <%# if @minimum_password_length %>
-            <br />
-            <em><%#= @minimum_password_length %> characters minimum</em>
-          <%# end %> -->
-        </div>
-
-        <div class="form-group">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "confirm new password", class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <!-- <%#= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br /> -->
-          <span>Current password to confirm</span>
-          <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "current password", class: "form-control" %>
-        </div>
-        <div class="actions">
-          <%= f.submit "Update", class: "btn btn-default" %>
-        </div>
-      <% end %>
-
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="sidebar-list">
+        <li class="sidebar-item">
+          <%= link_to "Edit Profile", edit_user_registration_path, class: "sidebar-link active" %>
+        </li>
+      </ul>
       <br>
-      <h2 class="text-center">Cancel my account</h2>
+      <%= link_to "View My Profile", user_path(current_user.id), class: "btn btn-default" %>
+    </div>
 
-      <p><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
-       <i class="fas fa-redo"></i> <%= link_to "Back", :back %>
+    <div class="col-md-7 offset-md-1 text-center">
+      <div class="panel panel-default">
+        <div class="panel-heading">Your Profile</div>
+        <div class="panel-body">
+          <div class="container">
 
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+              <!-- <= render "devise/shared/error_messages", resource: resource > -->
+              <div class="form-group">
+                <%= f.text_field :fullname, autofocus: true, autocomplete: "fullname", placeholder: "John Smith", class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.text_field :phone_number, autofocus: true, placeholder: "Phone number", autocomplete: "phone_number", class: "form-control" %>
+              </div>
+
+              <!-- diffrent type, define columns and rows -->
+              <div class="form-group">
+                <%= f.text_area :description, rows: 5, cols: 25, autofocus: true, placeholder: "Description", autocomplete: "description",class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+              </div>
+
+            <!-- Confirmation email -->
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+              <% end %>
+
+              <div class="form-group">
+                <span>Do you want to change password?</span>
+                <%= f.password_field :password, autocomplete: "new-password", placeholder: "new password",class: "form-control" %>
+                <% if @minimum_password_length %>
+                  <br />
+                  <em><%= @minimum_password_length %> characters minimum</em>
+                <% end %>
+              </div>
+
+              <div class="form-group">
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "confirm new password", class: "form-control" %>
+              </div>
+
+          <!--     <div class="form-group">
+                <span>Current password to confirm</span>
+                < f.password_field :current_password, autocomplete: "current-password", placeholder: "current password", class: "form-control" >
+              </div> -->
+
+              <div class="actions">
+                <%= f.submit "Update", class: "btn btn-normal" %>
+              </div>
+            <% end %>
+
+            <br>
+            <br>
+            <h3>Cancel your profile</h3>
+              <p><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-cancel" %></p>
+             <!-- <i class="fas fa-redo"></i> <%#= link_to "Back", :back %> -->
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- 1. remove password field to confirm changes =>  -->
+<!-- 2. override update resource function -> new controller for registration / route -->
