@@ -26,6 +26,7 @@
   border: 1px solid $cyan;
   border-radius: 2px;
   padding: 10px;
+  // rewrite default behavior (appearance) in browsers
   appearance: none;
   -moz-appearance: none; /* Firefox */
   -webkit-appearance: none; /* Safari & Chrome */
@@ -37,9 +38,11 @@
   font-size: 1.2em;
   position: absolute;
   color: $cyan;
+  // position of flag
   top: 40px;
   right: 30px;
-  transform: scale(0.94, 0.62);
+  // shape and size of flag (width, heigh)
+  transform: scale(1.1, 0.42);
 }
 
 .form-group input[type="checkbox"] {
@@ -51,8 +54,8 @@
   border: 1px solid $cyan;
   border-radius: 1px;
   appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
+  -moz-appearance: none; /* firefox */
+  -webkit-appearance: none; /* safari, chrome */
 }
 
 .form-group input[type="checkbox"]:checked:before {
