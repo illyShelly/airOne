@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
   before_action :set_room, except: [:index, :new, :create]
   before_action :authenticate_user!, except: [:show]
+  before_action :is_authorised, only: [:listing, :pricing, :description, :photo_upload, :amenities, :location, :update]
 
   def index
     # all rooms belongs to particular user
@@ -39,6 +40,7 @@ class RoomsController < ApplicationController
   end
 
   def photo_upload
+    @photos = @room.images
   end
 
   def amenities
@@ -65,8 +67,12 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
+  def is_authorised
+    redirect_to root_path, alert: "You don't have permission for this action" unless current_user == @room.user
+  end
+
   def room_params
-    params.require(:room).permit(:home_type, :room_type, :accommodate, :bed_room, :bath_room, :listing_name, :summary, :address, :is_tv, :is_kitchen, :is_air, :is_heating, :is_internet, :price, :active)
+    params.require(:room).permit(:home_type, :room_type, :accommodate, :bed_room, :bath_room, :listing_name, :summary, :address, :is_tv, :is_kitchen, :is_air, :is_heating, :is_internet, :price, :active, images:[])
   end
 end
 
@@ -74,3 +80,6 @@ end
 # no implicit conversion of Symbol into String
 # render :new, alert: "Something went wrong..." DO NOT WORK
 # render :new, :flash => { :alert => "Failed to save!" }
+
+# added room_params images[]
+# authorised -> secure user data to be changed by other users

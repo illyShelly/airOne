@@ -1,0 +1,19 @@
+<% if @room.images.attached? %>
+  <br>
+  <div class="row">
+    <% @room.images.each do |img| %>
+      <div class="col-md-4">
+        <!-- changed to new class panel-img -->
+        <div class="panel panel-img">
+          <div class="panel-heading preview">
+            <% if img.variable? %>
+
+              <%= image_tag img %>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

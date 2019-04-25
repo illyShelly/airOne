@@ -14,12 +14,29 @@
         <div class="panel-body">
           <div class="container">
             <div class="row">
-              <div class="col-md-offset3 col-md-6">
+              <div class="offset-md-3 col-md-6">
                 <!-- photos upload goes here -->
+                <%= form_for @room do |f| %>
+
+                    <div class="form-group">
+                      <span class="btn btn-default btn-file text-babu">
+                        Select Photos
+                        <%= f.file_field :images, multiple: true, class: "form-control", required: true %>
+                      </span>
+                    </div>
+                  <!-- submit button -->
+                  <div class="text-center">
+                    <%= f.submit "Add Photos", class: "btn btn-small" %>
+                  </div>
+
+                <% end %>
               </div>
             </div>
+            <div id="photos"> <%= render 'photos_list' %></div>
+
           </div>
         </div>
+
       </div>
     </div>
   </div>
