@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get 'photo_upload'
       get 'amenities'
       get 'location'
+      delete 'delete_attachment'
     end
   end
 end
@@ -30,3 +31,4 @@ end
 # for devise path: '' -> is not necessary write /users/signup...
 # deleted 'user' from controller name and path: 'user/omniauth_callbacks'
 # show for user => rest path manage devise
+# new route added for deleting image attach => also like: delete :delete_attachment

@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, except: [:index, :new, :create]
+  before_action :set_room, except: [:index, :new, :create, :delete_attachment]
   before_action :authenticate_user!, except: [:show]
   before_action :is_authorised, only: [:listing, :pricing, :description, :photo_upload, :amenities, :location, :update]
 
@@ -61,6 +61,14 @@ class RoomsController < ApplicationController
     redirect_back(fallback_location: request.referer)
   end
 
+
+  def delete_attachment
+    image = ActiveStorage::Attachment.find(params[:id])
+    image.purge
+    # respond_to :js
+    redirect_back(fallback_location: request.referer)
+  end
+
   private
 
   def set_room
@@ -83,3 +91,8 @@ end
 
 # added room_params images[]
 # authorised -> secure user data to be changed by other users
+
+# 1. delete method for attached images -> find activestorage id, method plurge
+# 2. before_action -> except delete_attachment for set_room
+# 3. routes new path for deleter_attachment
+# 4. make working AJAX -> name js file as -> the method, use -> respond_to :js??

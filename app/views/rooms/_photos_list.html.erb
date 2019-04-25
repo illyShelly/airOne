@@ -1,19 +1,39 @@
 <% if @room.images.attached? %>
+ <!-- if @photos.count > 0 -->
   <br>
   <div class="row">
+    <!-- @photos = @room.images .. updated controller in Room ..photo_upload method -->
     <% @room.images.each do |img| %>
       <div class="col-md-4">
         <!-- changed to new class panel-img -->
         <div class="panel panel-img">
+
           <div class="panel-heading preview">
             <% if img.variable? %>
-
-              <%= image_tag img %>
+            <!-- < link_to image_tag(img, class:"img-thumbnail tools-gallery"), img > -->
+             <%= image_tag img.variant(resize: '300x300>') %>
             <% end %>
-
           </div>
+
+          <div class="panel-body text-align-right">
+            <span>
+              <!-- remote true -> for AJAX to use -->
+              <%= link_to delete_attachment_room_path(img), method: :delete, remote: true, data: {confirm: "Are you sure?"} do %>
+                <!-- <i class="fa fa-trash-o" aria-hidden="true"></i> -->
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              <% end %>
+            </span>
+          </div>
+
         </div>
+
       </div>
+
     <% end %>
   </div>
 <% end %>
+
+<!-- @user.image.variant(resize: '180x135>') -->
+<!-- image_tag img.resize: '300x300>' -->
+<!-- combine_options: { gravity: 'Center', crop: '300x300+0+0' } -->
