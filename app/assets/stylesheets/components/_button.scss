@@ -10,6 +10,12 @@
   // display all buttons wide
   width: 100%;
 }
+.btn-publish {
+  padding: 7px 18px;
+  margin-top: 15px;
+  background-color: $pink;
+  width: auto;
+}
 .btn-small {
   padding: 7px 18px;
   margin-top: 15px;
@@ -25,9 +31,12 @@
   width: 100%;
   // background: $purple;
   margin-top: 10px;
-     border-color: #c4c4c4;
+  border-color: #c4c4c4;
   background: white;
   color: #484848;
+}
+.btn.btn-default:active {
+  background-color: #eaeaea;
 }
 
 .btn.btn-normal {
