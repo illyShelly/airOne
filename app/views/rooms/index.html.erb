@@ -1,2 +1,41 @@
-<h1>Rooms#index</h1>
-<p>Find me in app/views/rooms/index.html.erb</p>
+<div class="container">
+   <div class="row">
+    <div class="col-md-3">
+      <ul class="sidebar-list">
+        <li class="sidebar-item"><%= link_to "Your Listings", rooms_path, class: "sidebar-link active" %></li>
+        <li class="sidebar-item"><%= link_to "Your Reservations", rooms_path, class: "sidebar-link active" %></li>
+      </ul>
+    </div>
+
+    <div class="col-md-9">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Listings
+        </div>
+        <div class="panel-body">
+          <% @rooms.each do |room| %>
+            <div class="row">
+              <div class="col-md-3">
+                <%#= image_tag room.images[0].variant(resize: '200x200>') if room.images.attached? %>
+                <!-- calling room's model method -->
+                <%= image_tag room.cover_photo(resize: '170x170>') %>
+              </div>
+              <div class="col-md-7">
+                <h5><%= room.listing_name %></h5>
+              </div>
+              <div class="col-md-2 text-align-right">
+                <%= link_to "Update", listing_room_path(room), class: "btn btn-form" %>
+              </div>
+            </div>
+            <!-- division for next room -->
+            <hr>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 1. replace code by method in controller, default img -->
+<!-- listing to particular room: listing_room GET /rooms/:id/listing(.:format) rooms#listing -->
+
