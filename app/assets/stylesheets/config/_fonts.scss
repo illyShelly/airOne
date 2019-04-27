@@ -19,14 +19,18 @@ $headers-font: "Raleway", "Helvetica", "sans-serif";
 // }
 
 body {
-  color: #565a5c;
+  color: #343a40;
+  // #565A5C
 }
 
 .container {
   width: 80%;
+
+}
+.container-space {
+  width: 80%;
   padding: 25px 0;
 }
-
 ul {
   list-style-type: none;
 }

@@ -1,0 +1,47 @@
+.amenities li {
+  margin-bottom: 10px;
+  font-size: 16px;
+  list-style-type: none;
+}
+
+.amenities .text-line-through {
+  text-decoration: line-through;
+  color: rgba(0,0,0,0.45);
+  font-size: 14px;
+}
+
+
+// .cover-img-container {
+//   width: 100%;
+//   max-width: 994px;
+//   height: 450px;
+// }
+
+// .cover-img-show {
+//   overflow: hidden;
+//   height: 100%;
+// }
+
+
+.carousel {
+  /* any dimensions are fine, it can be responsive with max-width */
+  max-width: 600px;
+  max-height: 650px;
+}
+
+// .carousel-inner {
+//   /* make sure your .items will get correct height */
+//   // height: 100%;
+//   width: 100%;
+// }
+
+// .item {
+//   background-size: contain cover !important;
+//   // background-position: 50% 50%;
+//   width: 100%;
+//   height: 100%;
+// }
+
+// .item img {
+//   visibility: hidden;
+// }

@@ -1,1 +1,152 @@
-<h1>Show page</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- @room var => finding its id -->
+      <%= image_tag @room.cover_photo(resize: '1100x1100>'), width: "100%", crop: "fit", height: "550px" %>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+
+    <!-- LEFT PANEL -->
+    <div class="col-md-8">
+
+      <!-- Listing Name -->
+      <div class="row">
+        <div class="col-md-8">
+          <h1><%= @room.listing_name %></h1>
+          <%= @room.address %>
+        </div>
+        <div class="col-md-4 text-center">
+          <%= image_tag avatar_url(@room.user), class: "avatar-large" %>
+          <br><br>
+          <%= @room.user.fullname %>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Room Info -->
+      <div>
+        <div class="row text-babu-icons text-center row-space-1">
+          <!-- <div class="row text-center row-space-1"> -->
+            <div class="col-md-3">
+              <i class="fa fa-home fa-2x"></i>
+            </div>
+
+            <div class="col-md-3">
+              <i class="fa fa-user fa-2x"></i>
+            </div>
+
+            <div class="col-md-3">
+              <i class="fa fa-bed fa-2x"></i>
+            </div>
+
+            <div class="col-md-3">
+              <i class="fa fa-bath fa-2x"></i>
+            </div>
+
+          <!-- </div> -->
+        </div>
+        <div class="row text-center">
+          <div class="col-md-3"><%= @room.home_type %></div>
+          <!-- pluralize if more than 1 (Bedroom -> Bedrooms) -->
+          <div class="col-md-3"><%= pluralize(@room.accommodate, "Guest") %></div>
+          <div class="col-md-3"><%= pluralize(@room.bed_room, "Bedroom") %></div>
+          <div class="col-md-3"><%= pluralize(@room.bath_room, "Bathroom") %></div>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Summary -->
+      <div class="row">
+        <div class="col-md-12">
+          <h3>About This Room</h3>
+          <p><%= @room.summary %></p>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Amenities -->
+      <div class="row">
+        <div class="col-md-3">
+          <h4>Ammenities</h4>
+        </div>
+        <div class="col-md-9">
+          <div class="row">
+
+            <div class="col-md-6">
+              <ul class="amenities">
+                <li class="<%= 'text-line-through' if !@room.is_tv %>">TV</li>
+                <li class="<%= 'text-line-through' if !@room.is_kitchen %>">Kitchen</li>
+                <li class="<%= 'text-line-through' if !@room.is_internet %>">Internet</li>
+              </ul>
+            </div>
+
+            <div class="col-md-6">
+              <ul class="amenities">
+                <li class="<%= 'text-line-through' if !@room.is_heating %>">Heating</li>
+                <li class="<%= 'text-line-through' if !@room.is_air %>">Air-Condition</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Carousel -->
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <% if @photos.length > 0 %>
+
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <% @photos.each do |photo| %>
+                <li data-target="#myCarousel" data-slide-to="<%= photo.id %>"></li>
+              <% end %>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <% @photos.each do |photo| %>
+                  <!-- is active if photo id is the first pic -->
+                  <div class="carousel-item <%='active' if photo.id == @photos[0].id %>">
+                    <%= image_tag photo.variant(resize: '580x580>') %>
+                    <!-- description -->
+                 <!--    <div class="carousel-caption d-none d-md-block">
+                      <h5></h5>
+                      <p></p>
+                    </div> -->
+                  </div>
+                <% end %>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+        <% end %>
+        </div>
+
+      </div>
+      <hr>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+      <div class="col-md-8">
+        <!-- reservation form -->
+
+      </div>
+
+  </div>
+
+</div>
