@@ -53,9 +53,9 @@
 
 <!-- active default nil => is not active yet(published), not without price etc. -->
 <!-- ready to display => make visible button => disabled = false -->
-<% @ready_to_display = !@room.active && !@room.price.blank? && !@room.listing_name.blank? && @room.images.attached? && !@room.address.blank? %>
+<% ready_to_display = !@room.active && !@room.price.blank? && !@room.listing_name.blank? && @room.images.attached? && !@room.address.blank? %>
 
 <%= form_for @room do |f| %>
   <%= f.hidden_field :active, value: true %>
-  <%= f.submit "Publish", id: "publish_button", class: "btn btn-publish btn-block", disabled: !@ready_to_display %>
+  <%= f.submit "Publish", id: "publish_button", class: "btn btn-publish btn-block", disabled: !ready_to_display %>
 <% end %>

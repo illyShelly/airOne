@@ -50,7 +50,12 @@ class RoomsController < ApplicationController
   end
 
   def update
-    if @room.update(room_params)
+
+    new_params = room_params
+    # when all filled than active change to true => merge for item :active
+    new_params = room_params.merge(active: true) if ready_to_display
+
+    if @room.update(new_params)
       # redirect_to :back, notice: "Saved sucessfully"
       flash["notice"] = "Saved sucessfully"
       # redirect_to 'room_listing_path'
@@ -75,6 +80,10 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
+  def ready_to_display
+    !@room.active && !@room.price.blank? && !@room.listing_name.blank? && @room.images.attached? && !@room.address.blank?
+  end
+
   def is_authorised
     redirect_to root_path, alert: "You don't have permission for this action" unless current_user == @room.user
   end
@@ -96,3 +105,6 @@ end
 # 2. before_action -> except delete_attachment for set_room
 # 3. routes new path for deleter_attachment
 # 4. make working AJAX -> name js file as -> the method, use -> respond_to :js??
+
+# 5. secure data of :active room => from room_menu's form
+# => room is ready to display if not already activated and fully filled by data
