@@ -1,5 +1,13 @@
-$('#photos').html("<%= j render 'photos_list' %>")
-// cost photos = document.getElementById('photos');
-// photos.innerHTML('<%= j render 'photos_list' %>');
+// $('#photos').html("<%= j render 'photos_list' %>")
 
+
+// const photos = document.querySelector('#photos');
 // whenever I remove pic, it re-render whole photos_list (not whole page) in photo_upload.html.erb file
+// innerHTML is a property... thus you need to use = not ()... it's not jQuery.
+
+// function refreshForm(innerHTML) {
+//   const newPhotosForm = document.querySelector('#photos');
+//   newPhotosForm.innerHTML = innerHTML;
+// }
+
+// refreshForm('<%= j render "photos-list" %>');

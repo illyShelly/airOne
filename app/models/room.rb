@@ -9,6 +9,10 @@ class Room < ApplicationRecord
 
   has_many_attached :images
 
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
+  # after_validation :geocode, if: :address_changed?
+
   def cover_photo(size)
     if self.images.attached? && self.images[0].variable?
       self.images[0].variant(size)
@@ -23,3 +27,4 @@ end
 # -> amenities (does not need to be part of equipment (like TV, heating)) => not there
 # 3. using Active-storage (storage_blobs, storage_attachment(jointable)) = adding multiple images that will be associated with each room
 # 4. cover_photo in index.html, attached from active storage
+# 5. added two lines for google maps -> when changing address to apply new lat, lng
