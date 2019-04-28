@@ -139,58 +139,80 @@
       </div>
       <hr>
 
-       <!-- GOOGLE MAP -->
-    <div class="row">
+      <!-- GOOGLE MAP -->
+      <div class="row">
 
-      <div id="map" style="width: 100%; height: 400px"></div>
-      <script
-        src=
-          "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_BROWSER_KEY']}&v=3&callback=initialize">
-      </script>
+        <div id="map" style="width: 100%; height: 400px"></div>
+        <script
+          src=
+            "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_BROWSER_KEY']}&v=3&callback=initialize">
+        </script>
 
-      <script>
-        function initialize() {
-          var location = {
-            lat: <%= @room.latitude %>,
-            lng: <%= @room.longitude %>
-          };
-          var map = new google.maps.Map(document.getElementById('map'), {
-            center: location,
-            zoom: 15
-          });
-
-        // add marker
-          var marker = new google.maps.Marker({
-            position: location,
-            map: map
-          });
-
-        // // add inforwindow with pic
-        //   var infoWindow = new google.maps.InfoWindow({
-        //     content: '<div id="content"><%= image_tag @room.cover_photo(resize:'200x200>') %></div>'
-        //   });
-
-        //   infoWindow.open(map, marker);
-
-        // circle area
-          var circle = new google.maps.Circle({
-            map: map,
-            radius: 200, // this is in metres
-            fillColor: '#e20976',
-            strokeColor: '#e20976',
-            strokeOpacity: 0.8,
-            strokeWeight: 1.4
+        <script>
+          function initialize() {
+            var location = {
+              lat: <%= @room.latitude %>,
+              lng: <%= @room.longitude %>
+            };
+            var map = new google.maps.Map(document.getElementById('map'), {
+              center: location,
+              zoom: 15
             });
 
-            marker.setMap(null);
-            circle.bindTo('center', marker, 'position');
-        }
+          // add marker
+            var marker = new google.maps.Marker({
+              position: location,
+              map: map
+            });
 
-        google.maps.event.addDomListener(window, 'load', initialize);
-      </script>
+          // // add inforwindow with pic
+          //   var infoWindow = new google.maps.InfoWindow({
+          //     content: '<div id="content"><%= image_tag @room.cover_photo(resize:'200x200>') %></div>'
+          //   });
 
-    </div>
-    <hr/>
+          //   infoWindow.open(map, marker);
+
+          // circle area
+            var circle = new google.maps.Circle({
+              map: map,
+              radius: 200, // this is in metres
+              fillColor: '#e20976',
+              strokeColor: '#e20976',
+              strokeOpacity: 0.8,
+              strokeWeight: 1.4
+              });
+
+              marker.setMap(null);
+              circle.bindTo('center', marker, 'position');
+          }
+
+          google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+
+      </div>
+      <hr/>
+
+      <!-- ROOMS NEAR BY -->
+      <div>
+        <h3>More homes you may like</h3>
+        <div class="row">
+          <!-- for loop for geocode radius 10 km -->
+          <% for room in @room.nearbys(10).max(3).shuffle %>
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading preview">
+                <%= image_tag room.cover_photo(resize: '300x300>') %>
+              </div>
+              <div class="panel-body">
+                <%= link_to room.listing_name, room %><br>
+                -- <%= room.distance.round(1) %> km --
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <hr>
 
     </div>
 

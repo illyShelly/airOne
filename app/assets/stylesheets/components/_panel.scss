@@ -1,3 +1,6 @@
+.panel {
+  padding: 15px 0;
+}
 .panel-default .panel-heading {
   color: #ffffff;
   // background-color: #00A699;
@@ -5,7 +8,7 @@
   background-color: $dark-blue;
   font-size: 16px;
   font-weight: 400;
-  padding: 10px;
+  padding: 15px;
 }
 
 .panel-body {
