@@ -1,0 +1,11 @@
+<%= form_for([@room, @room.reservations.new]) do |f| %>
+  <%= f.text_field :start_date %>
+  <%= f.text_field :end_date %>
+
+  <br>
+  <%= f.submit "Book now", class: "btn btn-small btn-block" %>
+<% end %>
+
+<!-- not good way to use hidden_field in form (solve it in server site), like:  -->
+<!-- f.hidden_field :room_id, value: @room.id -->
+<!-- f.hidden_field :price, value: @room.price -->
