@@ -1,6 +1,6 @@
-<%= form_for([@room, @reservation]) do |f| %>
-  <%= f.text_field :start_date %>
-  <%= f.text_field :end_date %>
+<%= form_for([@room, @room.reservations.new]) do |f| %>
+  <%= f.text_field :start_date, as: :string %>
+  <%= f.text_field :end_date, as: :string %>
 
   <br>
   <%= f.submit "Book now", class: "btn btn-small btn-block" %>

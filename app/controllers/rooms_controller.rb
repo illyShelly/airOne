@@ -29,10 +29,10 @@ class RoomsController < ApplicationController
 
   def show
     @photos = @room.images
-    # for nested form - reservation
-    @reservation = Reservation.new
-    # assign room's id
-    @reservation.room_id = @room
+    # # for partial reservation's form
+    # @reservation = Reservation.new
+    # # assign room's id
+    # @reservation.room_id = @room
   end
 
   def listing
