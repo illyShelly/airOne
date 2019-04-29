@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :fullname, presence: true, length: { maximum: 50 }
 
   has_many :rooms
+  has_many :reservations
 
   def self.from_omniauth(auth)
     # check if user already has email created by FB
