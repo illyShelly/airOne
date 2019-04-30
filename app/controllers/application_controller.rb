@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
+  protect_from_forgery prepend: true, with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -15,3 +16,5 @@ end
 
 # devise gem doc - there are 2 places (forms to update)
 # update parameters for phone and description
+# ActionController::InvalidAuthenticityToken in RegistrationsController#create
+# --> updated above link for protection in Rails 5.2
