@@ -4,16 +4,17 @@
     </span>
     <span>Per Night</span>
   </div>
+
   <div class="panel-body">
     <%= form_for([@room, @room.reservations.new]) do |f| %>
     <div class="row">
       <div class="col-md-6">
         <label>Check-in</label>
-        <%= f.text_field :start_date, as: :string, placeholder: "Check-in", class: "form-control" %>
+        <%= f.text_field :start_date, placeholder: "Check-in", class: "form-control" %>
       </div>
       <div class="col-md-6">
         <label>Check-out</label>
-        <%= f.text_field :end_date, as: :string, placeholder: "Check-out", disabled: true, class: "form-control" %>
+        <%= f.text_field :end_date, placeholder: "Check-out", disabled: false, class: "form-control" %>
       </div>
     </div>
 
@@ -40,6 +41,7 @@
       <br>
       <%= f.submit "Book now", class: "btn btn-small btn-block" %>
     <% end %>
+
   </div>
 </div>
 
@@ -51,3 +53,5 @@
 <!-- @reservation = Reservation.new, @reservation.room_id = @room.id -->
 <!-- form: -->
 <!-- readonly: true ==> cannot fill the input just pick up from calender -->
+
+<!-- in simple form -> is needed to use as:string for active record -->
