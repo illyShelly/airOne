@@ -1,10 +1,47 @@
-<%= form_for([@room, @room.reservations.new]) do |f| %>
-  <%= f.text_field :start_date, as: :string %>
-  <%= f.text_field :end_date, as: :string %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <span><i class="fa fa-bolt" aria-hidden="true" style="color: #22e6c2"></i> €<%= @room.price %>
+    </span>
+    <span>Per Night</span>
+  </div>
+  <div class="panel-body">
+    <%= form_for([@room, @room.reservations.new]) do |f| %>
+    <div class="row">
+      <div class="col-md-6">
+        <label>Check-in</label>
+        <%= f.text_field :start_date, as: :string, placeholder: "Check-in", class: "form-control" %>
+      </div>
+      <div class="col-md-6">
+        <label>Check-out</label>
+        <%= f.text_field :end_date, as: :string, placeholder: "Check-out", disabled: true, class: "form-control" %>
+      </div>
+    </div>
 
-  <br>
-  <%= f.submit "Book now", class: "btn btn-small btn-block" %>
-<% end %>
+    <div id="preview" style="display: none">
+      <table class="reservation-table">
+        <tbody>
+          <tr>
+            <td>Price</td>
+            <td class="text-align-right">€<%= @room.price %></td>
+          </tr>
+          <!-- 2nd row -->
+           <tr>
+            <td>Night(s)</td>
+            <td class="text-align-right">x <span id="reservation_days"></span></td>
+          </tr>
+          <!-- 3rd row -->
+           <tr>
+            <td class="total">Total</td>
+            <td class="text-align-right">€<span id="reservation_total"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+      <br>
+      <%= f.submit "Book now", class: "btn btn-small btn-block" %>
+    <% end %>
+  </div>
+</div>
 
 <!-- not good way to use hidden_field in form (solve it in server site), like:  -->
 <!-- f.hidden_field :room_id, value: @room.id -->
@@ -12,3 +49,5 @@
 <!-- @room, @room.reservations.new -->
 <!-- [@room, @reservation] -> room controller in show:  -->
 <!-- @reservation = Reservation.new, @reservation.room_id = @room.id -->
+<!-- form: -->
+<!-- readonly: true ==> cannot fill the input just pick up from calender -->

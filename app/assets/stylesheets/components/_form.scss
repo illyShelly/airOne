@@ -1,6 +1,29 @@
 .text-align-right {
   text-align: right;
 }
+
+// form flatpicker
+.reservation-table td {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #dce0e0;
+  padding: 10px;
+}
+
+.reservation-table .total td {
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+}
+
+.form-control.flatpicker {
+  background-color: white;
+  color: $cyan;
+  border: 1px solid $cyan;
+  text-align: center;
+}
+
+// sidebar room/1/listing
 .align-check-icon {
   display: flex;
   justify-content: space-between;
