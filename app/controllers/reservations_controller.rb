@@ -11,7 +11,7 @@ class ReservationsController < ApplicationController
     else
       start_date = Date.parse(reservation_params[:start_date])
       end_date = Date.parse(reservation_params[:end_date])
-      nights = (end_date - start_date).to_i
+      nights = (end_date - start_date).to_i + 1
 
       @reservation = Reservation.new(reservation_params)
       @reservation.room = room # that's why not needed in params (room_id, user_id)

@@ -50,16 +50,15 @@
 
   // check date with all unavailable dates
   function checkDate(date) {
-    console.log("Check date function");
-    console.log(date.getDate());
-    dayMonthYear = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
-      // it takes date in particular date in given format and compare with every booked dates in the array
+    dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+      // takes date in given format and compare with every booked dates in the array
       // if matches return true ...
-    return [$.inArray(dayMonthYear, unavailableDates) == -1];
+    return [$.inArray(dmy, unavailableDates) == -1];
   }
 
   $(function() {
-  var unavailableDates = [];
+
+  unavailableDates = [];
   // 1. create AJAX
     $.ajax({
       // get reservations from the server -> running preload method in room controller returned in JSON
@@ -72,28 +71,39 @@
           // FROM OUR DB in JSON:
               // arrValue.start_date => 2019-04-30T00:00:00.000Z
               // new Date(arrValue.start_date) => Tue Apr 30 2019 02:00:00 GMT+0200 (Central European Summer Time)
-          // for(var i = start_date; i <= end_date; i++) => FOR LOOP => end_date - start_date
+          // FOR LOOP
           for(var i = new Date(arrValue.start_date); i <= new Date(arrValue.end_date); i.setDate(i.getDate() + 1)) {
           // ALL DATES (RESERVATIONS) BELONGS TO THAT ROOM OBJECT
             // console.log(i);
               // Tue Apr 30 2019 02:00:00 GMT+0200 (Central European Summer Time), Wed May 01 2019 ..., etc.
           // DISABLE ALL DATES IN THE calender -> new array and push it there
-            unavailableDates.push($.datepicker.formatDate('d-m-yy'), i);
+            unavailableDates.push($.datepicker.formatDate('d-m-yy', i));
           }
         });
+        // console.log(unavailableDates);
 
         // disable dates already picked
         $("#reservation_start_date").datepicker({
           // for display => for 01-01-2019, above for calculation 1-1-19
-          dateFormat: 'dd-mm-yy'
+          dateFormat: 'dd-mm-yy',
+          minDate: 0,
+          maxDate: '6m',
+          beforeShowDay: checkDate
         });
 
         $("#reservation_end_date").datepicker({
-          dateFormat: 'dd-mm-yy'
+          dateFormat: 'dd-mm-yy',
+          minDate: 0,
+          maxDate: '6m',
+          beforeShowDay: checkDate
         });
-      }
-    });
 
+
+      // end of success fce
+      }
+
+    // end of ajax
+    });
 
   });
 
