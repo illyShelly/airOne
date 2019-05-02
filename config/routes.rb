@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       get 'location'
       delete 'delete_attachment'
       get 'preload'
+      get 'preview'
     end
     resources :reservations, only: [:create]
   end

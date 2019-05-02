@@ -88,7 +88,26 @@ class RoomsController < ApplicationController
     render json: reservations
   end
 
+  def preview
+    # chosen dates from user in params
+    start_date = Date.parse(params[:start_date])
+    end_date = Date.parse(params[:end_date])
+
+    output = {
+      conflict: is_conflict?(start_date, end_date, @room)
+    }
+
+    # output true or false -> e.x.: {confict: false}
+    render json: output
+  end
+
   private
+
+  # data from user -> params => check start and end with DB (dates between picked ones)
+  def is_conflict?(param_start, param_end, room_object)
+    check = room_object.reservations.where("? < start_date AND end_date < ?", param_start, param_end)
+    check.size > 0 ? true : false
+  end
 
   def set_room
     @room = Room.find(params[:id])
