@@ -47,27 +47,54 @@
 
 
 <script>
-  $(function() {
 
+  // check date with all unavailable dates
+  function checkDate(date) {
+    console.log("Check date function");
+    console.log(date.getDate());
+    dayMonthYear = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+      // it takes date in particular date in given format and compare with every booked dates in the array
+      // if matches return true ...
+    return [$.inArray(dayMonthYear, unavailableDates) == -1];
+  }
+
+  $(function() {
+  var unavailableDates = [];
   // 1. create AJAX
     $.ajax({
+      // get reservations from the server -> running preload method in room controller returned in JSON
       url: '<%= preload_room_path(@room) %>',
       dateTyp: 'json',
       success: function(data) {
-        console.log(data);
-        // $.each(data, function(arrID, arrValue) {
-        //   console.log(arrValue);
-        // });
+        // console.log(data);
+        $.each(data, function(arrID, arrValue) {
+          // id: 2, user_id: 1, room_id: 1, start_date: "2019-04-30T00:00:00.000Z", end_date: "2019-05-05T00:00:00.000Z",
+          // FROM OUR DB in JSON:
+              // arrValue.start_date => 2019-04-30T00:00:00.000Z
+              // new Date(arrValue.start_date) => Tue Apr 30 2019 02:00:00 GMT+0200 (Central European Summer Time)
+          // for(var i = start_date; i <= end_date; i++) => FOR LOOP => end_date - start_date
+          for(var i = new Date(arrValue.start_date); i <= new Date(arrValue.end_date); i.setDate(i.getDate() + 1)) {
+          // ALL DATES (RESERVATIONS) BELONGS TO THAT ROOM OBJECT
+            // console.log(i);
+              // Tue Apr 30 2019 02:00:00 GMT+0200 (Central European Summer Time), Wed May 01 2019 ..., etc.
+          // DISABLE ALL DATES IN THE calender -> new array and push it there
+            unavailableDates.push($.datepicker.formatDate('d-m-yy'), i);
+          }
+        });
+
+        // disable dates already picked
+        $("#reservation_start_date").datepicker({
+          // for display => for 01-01-2019, above for calculation 1-1-19
+          dateFormat: 'dd-mm-yy'
+        });
+
+        $("#reservation_end_date").datepicker({
+          dateFormat: 'dd-mm-yy'
+        });
       }
     });
 
-    $("#reservation_start_date").datepicker({
-      dateFormat: 'dd-mm-yy'
-    });
 
-    $("#reservation_end_date").datepicker({
-      dateFormat: 'dd-mm-yy'
-    });
   });
 
 </script>
@@ -81,3 +108,14 @@
 <!-- readonly: true ==> cannot fill the input just pick up from calender -->
 
 <!-- in simple form -> is needed to use as:string for active record -->
+<!-- console.log(data); (4) [{…}, {…}, {…}, {…}]
+0:
+created_at: "2019-04-29T15:45:27.555Z"
+end_date: "2019-05-05T00:00:00.000Z"
+id: 2
+price: 99
+room_id: 1
+start_date: "2019-04-30T00:00:00.000Z"
+total: 594
+updated_at: "2019-04-29T15:45:27.555Z"
+user_id: 1 -->
