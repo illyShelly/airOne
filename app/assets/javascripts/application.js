@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require jquery
 //= require jquery-ui/widgets/datepicker
+//= require moment
 //= require_tree .
