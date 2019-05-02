@@ -79,6 +79,15 @@ class RoomsController < ApplicationController
     redirect_back(fallback_location: request.referer)
   end
 
+  def preload
+    @room = Room.find(params[:id])
+    today = Date.today
+    # looking for start_date/end_date bigger than today date
+    reservations = @room.reservations.where("start_date >= ? OR end_date >= ?", today, today)
+    # push back data in json format
+    render json: reservations
+  end
+
   private
 
   def set_room
@@ -113,3 +122,5 @@ end
 
 # 5. secure data of :active room => from room_menu's form
 # => room is ready to display if not already activated and fully filled by data
+
+# 6. preload method take data from about particular flat -> json

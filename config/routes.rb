@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       get 'amenities'
       get 'location'
       delete 'delete_attachment'
+      get 'preload'
     end
     resources :reservations, only: [:create]
   end

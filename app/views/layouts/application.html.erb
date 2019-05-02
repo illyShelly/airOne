@@ -6,13 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <!-- all stylesheet asset pipeline -->
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <!-- for new way JS with PACK FOLDER css -->
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- remove problems to update js files -->
     <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
     <%= stylesheet_pack_tag 'application', media: 'all' %>
-    <!-- <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %> -->
-    <!-- <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> was removed problems to update js files -->
   </head>
 
   <body>

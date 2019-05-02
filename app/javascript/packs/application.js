@@ -15,35 +15,37 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 import 'bootstrap';
+
 // import 'flatpickr/dist/flatpickr.css';
-import flatpickr from 'flatpickr';
-import 'application.css';
-// import { toggleDateInputs } from '../components/reservation';
+// import flatpickr from 'flatpickr';
+// import 'application.css';
+// // import { toggleDateInputs } from '../components/reservation';
 
 
-// flatpickr("#myID", {});
+// // flatpickr("#myID", {});
 
-// flatpickr("#reservation_start_date", {
-//   dateFormat: 'd-m-Y'
+// // flatpickr("#reservation_start_date", {
+// //   dateFormat: 'd-m-Y'
+// // });
+
+// // flatpickr("#reservation_end_date", {
+// //   dateFormat: 'd-m-Y'
+// // });
+
+
+// // jQuery#
+// // If you have jQuery, flatpickr is available as a plugin. Simply
+
+// $(function() {
+
+//   $("#reservation_start_date").flatpickr({
+//     dateFormat: 'd-m-y'
+//   });
+
+//   $("#reservation_end_date").flatpickr({
+//     dateFormat: 'd-m-y'
+//   });
 // });
-
-// flatpickr("#reservation_end_date", {
-//   dateFormat: 'd-m-Y'
-// });
-
-
-// jQuery#
-// If you have jQuery, flatpickr is available as a plugin. Simply
-
-$(function() {
-  $("#reservation_start_date").flatpickr({
-    dateFormat: 'd-m-y'
-  });
-
-  $("#reservation_end_date").flatpickr({
-    dateFormat: 'd-m-y'
-  });
-});
 
 
 

@@ -11,14 +11,16 @@
           <div class="panel-heading preview">
             <% if img.variable? %>
             <!-- < link_to image_tag(img, class:"img-thumbnail tools-gallery"), img > -->
-             <%= image_tag img.variant(resize: '300x300>') %>
+            <!-- <div data-img-id="<%= img.id %>"> -->
+             <%= link_to image_tag(img, class: "image-thumbnail"), img %>
+            <!-- </div> -->
             <% end %>
           </div>
 
           <div class="panel-body text-align-right">
             <span>
               <!-- remote true -> for AJAX to use -->
-              <%= link_to delete_attachment_room_path(img), method: :delete, remote: true, data: {confirm: "Are you sure?"} do %>
+              <%= link_to delete_attachment_room_path(img), method: :delete, remote: true do %>
                 <!-- <i class="fa fa-trash-o" aria-hidden="true"></i> -->
                 <i class="fa fa-trash" aria-hidden="true"></i>
                 <i class="fa fa-trash" aria-hidden="true"></i>
