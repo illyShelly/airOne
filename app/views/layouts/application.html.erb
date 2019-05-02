@@ -11,7 +11,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!-- remove problems to update js files -->
     <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
-    <%= stylesheet_pack_tag 'application', media: 'all' %>
+    <%#= stylesheet_pack_tag 'application', media: 'all' %>
   </head>
 
   <body>
@@ -21,6 +21,6 @@
       <%= yield %>
     <!-- </div> -->
     <%= javascript_include_tag "application" %> <!-- from app/assets/javascripts/application.js -->
-    <%= javascript_pack_tag "application" %>    <!-- from app/javascript/packs/application.js -->
+    <%#= javascript_pack_tag "application" %>    <!-- from app/javascript/packs/application.js -->
   </body>
 </html>
