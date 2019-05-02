@@ -19,7 +19,7 @@
     </div>
 
     <!-- message -->
-    <p style="padding: 10px 0 0"><span id="message"></span></p>
+    <p class="message-alert text-center"><span id="message"></span></p>
 
     <div id="preview" style="display: none">
       <table class="reservation-table">
@@ -93,10 +93,49 @@
           maxDate: '6m',
           beforeShowDay: checkDate,
           onSelect: function(selected) {
+            //all days before selected one will be disabled
             $('#reservation_end_date').datepicker("option", "minDate", selected);
+            // all days after end-date will be disabled for start-date
             $('#reservation_end_date').attr("disabled", false);
-          } //all days before selected one will be disabled
-        }); // all days after end-date will be disabled for start-date
+
+            // added ajax from below part as well
+            var start_date = $('#reservation_start_date').datepicker('getDate');
+            var end_date = $('#reservation_end_date').datepicker('getDate');
+            // in miliseconds -> 1000, min -> 60, hour -> 60, day -> 24h
+            var nights = ((end_date - start_date)/1000/60/60/24 + 1)
+
+            var input = {
+              'start_date': start_date,
+              'end_date': end_date
+            }
+
+             $.ajax({
+              url: '<%= preview_room_path(@room) %>',
+              data: input, // as data put input variable
+              success: function(data) {
+
+                // console.log("preview method return conflict based on picked dates");
+                console.log(data); // preview method return JSON: // {confict: false}
+                // console.log(data.conflict);
+                if (data.conflict) {
+                  $('#message').text("These days are not available.");
+                  $('#preview').hide(); // with calculation
+                  $('#btn-book').attr("disabled", true); // disabled button
+                } else {
+                  $('#message').hide();
+                  $('#preview').show(); // show calculation
+                  $('#btn-book').attr("disabled", false); // clickable button
+
+                  // FILL in the calculation
+                  var total = nights * <%= @room.price %>
+                  // insert to browser
+                  $('#reservation_nights').text(nights);
+                  $('#reservation_total').text(total);
+                }
+              }
+            });
+          }
+        });
 
         $("#reservation_end_date").datepicker({
           dateFormat: 'dd-mm-yy',
@@ -112,7 +151,7 @@
 
             // FILL in the calculation
             // in miliseconds -> 1000, min -> 60, hour -> 60, day -> 24h
-            var nights = ((end_date - start_date)/1000/60/60/24)
+            var nights = ((end_date - start_date)/1000/60/60/24 + 1)
             // console.log(nights)
 
             // new variable in JSON format following with AJAX request
@@ -129,7 +168,7 @@
 
                 console.log("preview method return conflict based on picked dates");
                 console.log(data); // preview method return JSON: // {confict: false}
-                console.log(data.conflict);
+                // console.log(data.conflict);
                 if (data.conflict) {
                   $('#message').text("These days are not available.");
                   $('#preview').hide(); // with calculation
