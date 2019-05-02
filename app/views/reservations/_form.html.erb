@@ -19,7 +19,7 @@
     </div>
 
     <!-- message -->
-    <p><span id="message"></span></p>
+    <p style="padding: 10px 0 0"><span id="message"></span></p>
 
     <div id="preview" style="display: none">
       <table class="reservation-table">
@@ -31,7 +31,7 @@
           <!-- 2nd row -->
            <tr>
             <td>Night(s)</td>
-            <td class="text-align-right">x <span id="reservation_days"></span></td>
+            <td class="text-align-right">x <span id="reservation_nights"></span></td>
           </tr>
           <!-- 3rd row -->
            <tr>
@@ -110,6 +110,11 @@
             var start_date = $('#reservation_start_date').datepicker('getDate');
             var end_date = $('#reservation_end_date').datepicker('getDate');
 
+            // FILL in the calculation
+            // in miliseconds -> 1000, min -> 60, hour -> 60, day -> 24h
+            var nights = ((end_date - start_date)/1000/60/60/24)
+            // console.log(nights)
+
             // new variable in JSON format following with AJAX request
             // these data goes to controller to 'preview method'
             var input = {
@@ -133,6 +138,12 @@
                   $('#message').hide();
                   $('#preview').show(); // show calculation
                   $('#btn-book').attr("disabled", false); // clickable button
+
+                  // FILL in the calculation
+                  var total = nights * <%= @room.price %>
+                  // insert to browser
+                  $('#reservation_nights').text(nights);
+                  $('#reservation_total').text(total);
                 }
               }
             });
