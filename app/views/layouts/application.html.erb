@@ -7,13 +7,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%#= stylesheet_link_tag 'http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <!-- remove problems to update js files -->
+    <!-- disabled case trouble in development unsecured data -->
+      <%#= stylesheet_link_tag 'http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' %>
+    <!-- makes problem to run dropdown menu, Google maps -->
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
-    <%#= stylesheet_pack_tag 'application', media: 'all' %>
+      <%#= stylesheet_pack_tag 'application', media: 'all' %>
   </head>
-
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
@@ -21,6 +21,7 @@
       <%= yield %>
     <!-- </div> -->
     <%= javascript_include_tag "application" %> <!-- from app/assets/javascripts/application.js -->
+    <!-- , 'data-turbolinks-eval': false -->
     <%#= javascript_pack_tag "application" %>    <!-- from app/javascript/packs/application.js -->
   </body>
 </html>

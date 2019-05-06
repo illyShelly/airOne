@@ -9,4 +9,5 @@ class RegistrationsController < Devise::RegistrationsController
   end
 end
 
+
 # needs to be fixed -> do not update

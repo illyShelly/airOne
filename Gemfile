@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 5.2.2'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -17,17 +17,25 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 
 gem 'webpacker', '~> 4.x'
+
+# for datepicker
+gem 'jquery-rails' # Add this line if you use Rails 5.1 or higher
+gem 'jquery-ui-rails'
+# bootstrap fix dropdown
+gem 'bootstrap-sass', '~> 3.4.1'
+
 gem 'autoprefixer-rails', '~> 9.5.1'
 gem 'font-awesome-sass', '~> 5.6.1'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
+
+# ttimezone issue
+# gem 'momentjs-rails'
+
 gem 'devise'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'omniauth-facebook'
 gem "aws-sdk-s3", require: false
 gem 'geocoder'
-# for datepicker
-gem 'jquery-ui-rails'
-# ttimezone issue
-gem 'momentjs-rails'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

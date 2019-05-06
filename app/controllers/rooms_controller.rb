@@ -118,7 +118,7 @@ class RoomsController < ApplicationController
   end
 
   def is_authorised
-    redirect_to root_path, alert: "You don't have permission for this action" unless current_user == @room.user
+    redirect_to root_path, alert: "You don't have permission for this action" unless current_user.id == @room.user_id
   end
 
   def room_params

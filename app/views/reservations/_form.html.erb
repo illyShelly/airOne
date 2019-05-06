@@ -48,7 +48,6 @@
   </div>
 </div>
 
-
 <script>
 
   // check date with all unavailable dates
@@ -60,12 +59,12 @@
   }
 
   //fce solving timezone issue
-  function resetUTC(d){
-    var f = moment.utc(d);
-    var now = new Date(f._d);
-    var utcDate = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
-    return utcDate;
-  }
+  // function resetUTC(d){
+  //   var f = moment.utc(d);
+  //   var now = new Date(f._d);
+  //   var utcDate = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
+  //   return utcDate;
+  // }
 
   $(function() {
 
@@ -83,7 +82,7 @@
               // arrValue.start_date => 2019-04-30T00:00:00.000Z
               // new Date(arrValue.start_date) => Tue Apr 30 2019 02:00:00 GMT+0200 (Central European Summer Time)
           // FOR LOOP
-          for(var i = resetUTC(arrValue.start_date); i <= resetUTC(arrValue.end_date); i.setDate(i.getDate() + 1)) {
+          for(var i = new Date(arrValue.start_date); i <= new Date(arrValue.end_date); i.setDate(i.getDate() + 1)) {
           // ALL DATES (RESERVATIONS) BELONGS TO THAT ROOM OBJECT
             // console.log(i);
               // Tue Apr 30 2019 02:00:00 GMT+0200 (Central European Summer Time), Wed May 01 2019 ..., etc.
