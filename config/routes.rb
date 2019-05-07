@@ -29,6 +29,9 @@ Rails.application.routes.draw do
     end
     resources :reservations, only: [:create]
   end
+  get '/your_trips', to: 'reservations#your_trips', as: 'your_trips'
+  # get '/your_trips' => 'reservations#your_trips'
+
 end
 
 # for devise path: '' -> is not necessary write /users/signup...

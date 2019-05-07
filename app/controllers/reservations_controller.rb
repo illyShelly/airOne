@@ -29,6 +29,11 @@ class ReservationsController < ApplicationController
     redirect_to room
   end
 
+  # my personal bookings
+  def your_trips
+    @trips = current_user.reservations.order(start_date: :asc)
+  end
+
   private
 
   def reservation_params
