@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :reservations, only: [:create]
   end
   get '/your_trips', to: 'reservations#your_trips', as: 'your_trips'
+  get '/your_reservations', to: 'reservations#your_reservations', as: 'your_reservations'
   # get '/your_trips' => 'reservations#your_trips'
 
 end

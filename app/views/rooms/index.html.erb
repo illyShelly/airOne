@@ -3,7 +3,8 @@
     <div class="col-md-3">
       <ul class="sidebar-list">
         <li class="sidebar-item"><%= link_to "Your Listings", rooms_path, class: "sidebar-link active" %></li>
-        <li class="sidebar-item"><%= link_to "Your Reservations", rooms_path, class: "sidebar-link active" %></li>
+        <li class="sidebar-item"><%= link_to "Your Reservations", your_reservations_path, class: "sidebar-link" %></li>
+        <li class="sidebar-item"><%= link_to "My Trips", your_trips_path, class: "sidebar-link" %></li>
       </ul>
     </div>
 
@@ -18,18 +19,23 @@
               <div class="col-md-3">
                 <%#= image_tag room.images[0].variant(resize: '200x200>') if room.images.attached? %>
                 <!-- calling room's model method -->
-                <%= image_tag room.cover_photo(resize: '170x170>') %>
+                <%= link_to room_path(room) do %>
+                  <%= image_tag room.cover_photo(resize: '170x170>'), class: "image-present" %>
+                <% end %>
               </div>
               <div class="col-md-7">
-                <h5><%= room.listing_name %></h5>
+                <%= link_to room_path(room) do %>
+                  <h5><%= room.listing_name %></h5>
+                <% end %>
               </div>
-              <div class="col-md-2 text-align-right">
+              <div class="col-md-2 pull-right">
                 <%= link_to "Update", listing_room_path(room), class: "btn btn-form" %>
               </div>
             </div>
             <!-- division for next room -->
             <hr>
           <% end %>
+
         </div>
       </div>
     </div>

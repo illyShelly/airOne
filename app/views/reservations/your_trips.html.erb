@@ -3,7 +3,7 @@
     <div class="col-md-3">
       <ul class="sidebar-list">
         <li class="sidebar-item"><%= link_to "Your Listings", rooms_path, class: "sidebar-link" %></li>
-        <li class="sidebar-item"><%= link_to "Your Reservations", rooms_path, class: "sidebar-link" %></li>
+        <li class="sidebar-item"><%= link_to "Your Reservations", your_reservations_path, class: "sidebar-link" %></li>
         <li class="sidebar-item"><%= link_to "My Trips", your_trips_path, class: "sidebar-link active" %></li>
       </ul>
     </div>
@@ -18,7 +18,7 @@
           <% @trips.each do |mybooking| %>
             <div class="row">
               <!-- 1. col - display date -->
-              <div class="col-md-2 font-display">
+              <div class="col-md-2 font-smaller">
                 <%= mybooking.start_date.strftime('%v') %>
               </div>
               <!-- 2. col - pic of room, cover_photo method -->
@@ -27,11 +27,11 @@
                   <%= image_tag mybooking.room.cover_photo(resize: '300x300>'), class: 'image-present' %>
                 <% end %>
               </div>
-              <!-- 3. col - name of room -->
+              <!-- 3. col - name of visited room -->
               <div class="col-md-7">
                <%= link_to mybooking.room.listing_name, room_path(mybooking.room) %>
                <span class="pull-right text-center">
-                <!-- display avatar & link to user profile -->
+                <!-- display avatar & link to owner profile -->
                 <%= link_to user_path(mybooking.user) do %>
                 <%= image_tag avatar_url(mybooking.user), class: 'avatar-medium' %><br>
                   <%= mybooking.user.fullname %>

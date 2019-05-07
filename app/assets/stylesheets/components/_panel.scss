@@ -1,4 +1,4 @@
-.font-display {
+.font-smaller {
   font-size: 14px;
 }
 .panel-default .panel-heading {
@@ -18,7 +18,7 @@
   border: 1px  solid #d6d6d6;
   background-color: white;
   font-size: 15px;
-  color: #828586;
+  color: $middle-gray;
   padding: 10px 15px;
   box-shadow: 5px 8px 15px #697975;
 }

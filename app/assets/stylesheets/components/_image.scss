@@ -7,3 +7,13 @@
 .image-present {
   width: 100%;
 }
+
+a {
+  color: $middle-gray;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: #269aaa;
+  text-decoration: none;
+}
