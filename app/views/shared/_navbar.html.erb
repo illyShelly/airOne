@@ -11,17 +11,20 @@
 
     <% if user_signed_in? %>
       <!-- Links when logged in -->
+<!--  <button class="btn btn-small"> style: "color: white; text-decoration: none; margin-top: 0;"  -->
+      <%= link_to "Become a host", new_room_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <!-- </button> -->
       <%= link_to "All Rooms", rooms_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <%= image_tag avatar_url(current_user), class: "avatar-large", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <%= image_tag avatar_url(current_user), class: "avatar-medium", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
              <!-- <span class="dropdown-item"> <strong>Hello, <%= current_user.fullname %>!</strong></span> -->
 
             <%#= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
             <li> <%= link_to "nowhere" do %>
-                <strong>Hello, <%= current_user.fullname %>!</strong>
+                <strong>Hello, <%= current_user.fullname.capitalize %>!</strong>
               <% end %>
             </li>
             <li>
@@ -29,16 +32,17 @@
                 <i class="fa fa-user"></i> <%= t(".edit_profile", default: "Edit Profile") %>
               <% end %>
             </li>
-            <li><%= link_to "Manage Listings", "#", class: "dropdown-item" %></li>
-            <li><%= link_to "List Your Space", "#", class: "dropdown-item" %></li>
-            <li><%= link_to "Your Reservations", "#", class: "dropdown-item" %></li>
-            <li><%= link_to "Your Trips", "#", class: "dropdown-item" %></li>
-
+            <li><%= link_to "Manage Listings", rooms_path, class: "dropdown-item" %></li>
+            <!-- <li><%#= link_to "List Your Space", new_room_path, class: "dropdown-item" %></li> -->
             <li>
                 <%= link_to new_room_path do %>
-                  <i class="fa fa-plus"></i>  <%= t(".add_room", default: "Add Room") %>
+                  <i class="fa fa-plus"></i>  <%= t(".add_new_flat", default: "Add New Flat") %>
                   <% end %>
             </li>
+
+            <li><%= link_to "Your Reservations", your_reservations_path, class: "dropdown-item" %></li>
+            <li><%= link_to "Your Trips", your_trips_path, class: "dropdown-item" %></li>
+
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
                 <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
