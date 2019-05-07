@@ -7,8 +7,8 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[facebook]
   validates :fullname, presence: true, length: { maximum: 50 }
 
-  has_many :rooms
-  has_many :reservations
+  has_many :rooms, dependent: :destroy
+  has_many :reservations, dependent: :destroy
 
   def self.from_omniauth(auth)
     # check if user already has email created by FB
