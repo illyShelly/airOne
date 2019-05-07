@@ -9,16 +9,41 @@
             <div class="panel-heading">Verification
             </div>
               <div class="panel-body">
-                Email address: <%= @user.email %><br>
-                Phone number: <%= @user.phone_number %>
+                <ul class="sidebar-list">
+                  <!-- confirmation_token does not work -->
+                   <% if @user.email %>
+                    <li>Email Address<span class="pull-right babu-icon"><i class="fa fa-check-circle-o"></i></span></li>
+                  <% end %>
+                  <% if @user.provider %>
+                    <li>Facebook<span class="pull-right babu-icon"><i class="fa fa-check-circle-o"></i></span></li>
+                  <% end %>
+                  <li>Phone Number<span class="pull-right babu-icon"><i class="fa fa-check-circle-o"></i></span></li>
+                </ul>
               </div>
           </div>
         </div>
 
         <div class="col-md-9">
-          <h2><%= @user.fullname %></h2>
+          <h2><%= @user.fullname.capitalize %></h2>
           <div class="description row-space-3">
             <%= @user.description %>
+          </div>
+
+          <h4>Listings (<%= @rooms.length %>)</h4><br>
+          <div class="row">
+            <% @rooms.each do |room| %>
+            <div class="col-md-4">
+              <div class="panel panel-default">
+                <div class="preview">
+                  <%= image_tag room.cover_photo(resize: '300x300>'), class: 'image-present' %>
+                </div>
+                <div class="panel-body">
+                  <%= link_to room.listing_name, room %>
+                </div>
+              </div>
+
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
@@ -26,3 +51,4 @@
 <% end %>
 
 <!-- solve privacy in view and controller - alert and redirect to home -->
+<!-- if user sign up with email -> confirmation_token was used; provider e.x.: FB, github -->

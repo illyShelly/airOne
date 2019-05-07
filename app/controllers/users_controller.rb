@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def show
     redirect_to root_path, alert: "Denied permission" unless current_user == @user
+    @rooms = current_user.rooms
   end
 
   private

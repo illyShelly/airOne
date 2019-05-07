@@ -31,10 +31,10 @@
               <div class="col-md-7">
                <%= link_to mybooking.room.listing_name, room_path(mybooking.room) %>
                <span class="pull-right text-center">
-                <!-- display avatar & link to owner profile -->
-                <%= link_to user_path(mybooking.user) do %>
-                <%= image_tag avatar_url(mybooking.user), class: 'avatar-medium' %><br>
-                  <%= mybooking.user.fullname %>
+                <!-- display avatar & link to owner profile NOT mine related with booking -->
+                <%= link_to user_path(mybooking.room.user) do %>
+                <%= image_tag avatar_url(mybooking.room.user), class: 'avatar-medium' %><br>
+                  <%= mybooking.room.user.fullname %>
                 <% end %>
                </span>
               </div>
