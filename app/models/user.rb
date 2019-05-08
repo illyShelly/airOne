@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   has_many :rooms, dependent: :destroy
   has_many :reservations, dependent: :destroy
+  has_many :guest_reviews, class_name: "GuestReview", foreign_key: "guest_id"
+  has_many :host_reviews, class_name: "HostReview", foreign_key: "host_id"
 
   def self.from_omniauth(auth)
     # check if user already has email created by FB
@@ -34,3 +36,4 @@ end
 # 1. validation
 # 2. fb login
 # 3. generated Rooms -> association
+# 4. has_many guest and host reviews
