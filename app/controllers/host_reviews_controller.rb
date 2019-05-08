@@ -22,16 +22,16 @@ class HostReviewsController < ApplicationController
       if @has_reviewed.nil?
         # Allow to review
         @host_review = current_user.host_reviews.create(host_review_params)
-        flash[:success] = "Review was created"
+        flash[:notice] = "Review was created"
       else
         # Already reviewed -> info
-        flash[:success] = "You already reviewed this trip"
+        flash[:alert] = "You already reviewed this trip"
       end
-
     # BOOKING does not exist
     else
       flash[:alert] = "Not found this reservation"
     end
+    redirect_back(fallback_location: request.referer)
   end
 
   def destroy

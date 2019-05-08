@@ -21,10 +21,10 @@ class GuestReviewsController < ApplicationController
       if @has_reviewed.nil?
           # Allow to review
           @guest_review = current_user.guest_reviews.create(guest_review_params)
-          flash[:success] = "Review created..."
+          flash[:notice] = "Review created..."
       else
           # Already reviewed
-          flash[:success] = "You already reviewed this Reservation"
+          flash[:alert] = "You already reviewed this Reservation"
       end
     else
       flash[:alert] = "Not found this reservation"
