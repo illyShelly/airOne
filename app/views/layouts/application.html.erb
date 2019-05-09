@@ -9,6 +9,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <!-- disabled case trouble in development unsecured data -->
       <%#= stylesheet_link_tag 'http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' %>
+    <%#= javascript_include_tag 'ratyrate.js', "data-turbolinks-track" => false %>
     <!-- makes problem to run dropdown menu, Google maps -->
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
@@ -20,7 +21,8 @@
     <!-- <div class="container"> makes session error shorter-->
       <%= yield %>
     <!-- </div> -->
-    <%= javascript_include_tag "application" %> <!-- from app/assets/javascripts/application.js -->
+    <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
+    <!-- from app/assets/javascripts/application.js -->
     <!-- , 'data-turbolinks-eval': false -->
     <%#= javascript_pack_tag "application" %>    <!-- from app/javascript/packs/application.js -->
   </body>

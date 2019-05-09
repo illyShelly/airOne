@@ -14,6 +14,7 @@
 //= require turbolinks
 //= require jquery
 //= require jquery-ui/widgets/datepicker
+//= require jquery.raty
 //= require activestorage
 //= require bootstrap-sprockets
 //= require_tree .
