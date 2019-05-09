@@ -23,8 +23,9 @@ class Room < ApplicationRecord
     end
   end
 
+  # double equal :)
   def avarage_rating
-    guest_reviews.count = 0 ? 0 : guest_reviews.avarage(:star).round(2).to_i
+    guest_reviews.count == 0 ? 0 : guest_reviews.average(:star).round(2).to_i
   end
 end
 

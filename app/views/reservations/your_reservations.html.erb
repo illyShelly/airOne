@@ -23,16 +23,18 @@
                 <div class="row">
                   <!-- 1. col - date of booked flat -->
                   <div class="col-md-2 font-smaller">
-                    <%= reservation.start_date.strftime('%v') %>
+                    <%= reservation.start_date.strftime('%a %d %b %y') %><br>
+                     <!-- <span>-</span><br> -->
+                    <%= reservation.end_date.strftime('%a %d %b %y') %>
                   </div>
                   <!-- 2. col - pic of booked flat as link -->
-                  <div class="col-md-2">
+                  <div class="col-md-3">
                     <%= link_to room_path(reservation.room) do %>
                       <%= image_tag reservation.room.cover_photo(resize: '300x300>'), class: 'image-present' %>
                     <% end %>
                   </div>
                   <!-- 3. col name/avatar of the user and link to his/her profile page -->
-                  <div class="col-md-5">
+                  <div class="col-md-4">
                     <%= link_to reservation.room.listing_name, room_path(reservation.room) %><br><br>
                     <span class="">
                       <%= link_to user_path(reservation.user) do %>

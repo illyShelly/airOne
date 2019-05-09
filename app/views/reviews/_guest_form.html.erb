@@ -15,7 +15,9 @@
       <div class="modal-body">
         <%= form_for current_user.guest_reviews.new do |f| %>
           <div class="form-group text-center">
-            <%= f.text_field :star %>
+            <%#= f.text_field :star %>
+            <!-- need to add id to recognize which review was clicked -->
+            <div id="stars_<%= reservation.id %>"></div>
           </div>
           <div class="form-group">
             <%= f.text_area :comment, rows: 3, class: "form-control" %>
@@ -33,3 +35,13 @@
 
   </div>
 </div>
+
+<script>
+  // update with id -> stars not appear in modal for other resevations
+  $('#stars_<%= reservation.id %>').raty({
+    // path to images of starts
+    path: '/assets',
+    scrollName: 'guest_review[star]',
+    score: 1
+  })
+</script>

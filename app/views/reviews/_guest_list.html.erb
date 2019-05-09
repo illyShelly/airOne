@@ -5,7 +5,7 @@
 <% else %>
 
   <!-- order reviews from new to old -->
-  <% @guest_reviews.order(id: :desc).each do |rev| %>
+  <% @guest_reviews.order(id: :desc).take(5).each do |rev| %>
     <hr>
     <div class="row">
       <div class="col-md-3 text-center">
@@ -14,19 +14,30 @@
         <strong><%= rev.guest.fullname %></strong>
       </div>
       <div class="col-md-9">
-        <div><%= rev.star %></div>
+        <!-- <div><%#= rev.star %></div> -->
+        <div id="star_<%= rev.id %>"></div>
         <!-- if user is login && is also guest who wrote review -->
         <% if current_user && current_user == rev.guest %>
           <span class="pull-right">
             <%= link_to rev, method: :delete, data: { confirm: "Are you sure?"} do %>
-              <i class="fa fa-trash fa-lg"></i>
+              <i class="fa fa-trash fa-lg", style= "color: #dc0468;"></i>
             <% end %>
           </span>
         <% end %>
-      </div>
       <!-- 2019-05-08 16:42:12 UTC -->
       <div><%= rev.created_at.strftime("%v") %></div>
       <div><%= rev.comment %></div>
+      </div>
     </div>
+<!-- within a loop avarage_rating -->
+  <script>
+    $('#star_<%= rev.id %>').raty({
+      // path to images of starts
+      path: '/assets',
+      // cannom change in show page stars
+      readOnly: true,
+      score: <%= rev.star %>
+    })
+  </script>
   <% end %>
 <% end %>

@@ -234,3 +234,13 @@
   </div>
 
 </div>
+
+<script>
+  $('#avarage_rating').raty({
+    // path to images of starts
+    path: '/assets',
+    // cannom change in show page stars
+    readonly: true,
+    score: <%= @room.avarage_rating %>
+  })
+</script>

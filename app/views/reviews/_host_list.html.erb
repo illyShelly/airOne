@@ -6,7 +6,7 @@
 <% else %>
 
   <!-- order reviews from new to old -->
-  <% @host_reviews.order(id: :desc).each do |rev| %>
+  <% @host_reviews.order(id: :desc).take(8).each do |rev| %>
     <hr>
     <div class="row">
       <div class="col-md-3 text-center">
@@ -15,19 +15,31 @@
         <strong><%= rev.host.fullname %></strong>
       </div>
       <div class="col-md-9">
-        <div><%= rev.star %></div>
+        <!-- <div><%#= rev.star %></div> -->
+         <div id="star_<%= rev.id %>"></div>
         <!-- if user is login && is also host who wrote review -->
         <% if current_user && current_user == rev.host %>
           <span class="pull-right">
             <%= link_to rev, method: :delete, data: { confirm: "Are you sure?"} do %>
-              <i class="fa fa-trash fa-lg"></i>
+              <i class="fa fa-trash fa-lg", style= "color: #07d9ff;"></i>
             <% end %>
           </span>
         <% end %>
-      </div>
-       <!-- 2019-05-08 16:42:12 UTC -->
+       <!-- 2019-05-08 16:42:12 UTC; inside of col-md-9 without space before stars -->
       <div><%= rev.created_at.strftime("%v") %></div>
       <div><%= rev.comment %></div>
+      </div>
     </div>
+
+    <script>
+    $('#star_<%= rev.id %>').raty({
+      // path to images of starts
+      path: '/assets',
+      // cannom change in show page stars
+      readOnly: true,
+      score: <%= rev.star %>
+    })
+  </script>
+
   <% end %>
 <% end %>

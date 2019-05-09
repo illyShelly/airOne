@@ -19,16 +19,18 @@
             <div class="row">
               <!-- 1. col - display date -->
               <div class="col-md-2 font-smaller">
-                <%= mybooking.start_date.strftime('%v') %>
+                <%= mybooking.start_date.strftime('%a %d %b %y') %><br>
+                <!-- <span>-</span><br> -->
+                <%= mybooking.end_date.strftime('%a %d %b %y') %>
               </div>
               <!-- 2. col - pic of room, cover_photo method -->
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <%= link_to room_path(mybooking.room) do %>
                   <%= image_tag mybooking.room.cover_photo(resize: '300x300>'), class: 'image-present' %>
                 <% end %>
               </div>
               <!-- 3. col - name of visited room -->
-              <div class="col-md-5">
+              <div class="col-md-4">
                <%= link_to mybooking.room.listing_name, room_path(mybooking.room) %><br><br>
                <span class="">
                 <!-- display avatar & link to owner profile NOT mine related with booking -->
