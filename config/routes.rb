@@ -43,3 +43,4 @@ end
 # deleted 'user' from controller name and path: 'user/omniauth_callbacks'
 # show for user => rest path manage devise
 # new route added for deleting image attach => also like: delete :delete_attachment
+# your_trips as guest, your_reservations -> visiting my flats

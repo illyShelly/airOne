@@ -12,8 +12,8 @@ class Room < ApplicationRecord
   has_many :guest_reviews
 
   geocoded_by :address
-  after_validation :geocode, if: :will_save_change_to_address?
-  # after_validation :geocode, if: :address_changed?
+  # after_validation :geocode, if: :will_save_change_to_address?
+  after_validation :geocode, if: :address_changed?
 
   def cover_photo(size)
     if self.images.attached? && self.images[0].variable?

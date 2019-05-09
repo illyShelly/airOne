@@ -16,7 +16,7 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
-gem 'webpacker', '~> 4.x'
+# gem 'webpacker', '~> 4.x'
 
 # for datepicker
 gem 'jquery-rails' # Add this line if you use Rails 5.1 or higher

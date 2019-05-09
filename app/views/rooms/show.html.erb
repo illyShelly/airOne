@@ -137,16 +137,17 @@
       <div class="row">
 
         <div id="map" style="width: 100%; height: 400px"></div>
-        <script  type="text/javascript" src=
-            "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_BROWSER_KEY']}&v=3&callback=initialize">
-        </script>
-
+        <script type="text/javascript" src=
+            "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_BROWSER_KEY']}&v=3&callback=initialize"></script>
+<!-- &v=3&callback=initialize -->
         <script>
           function initialize() {
             var location = {
               lat: <%= @room.latitude %>,
               lng: <%= @room.longitude %>
             };
+            console.log(location);
+
             var map = new google.maps.Map(document.getElementById('map'), {
               center: location,
               zoom: 15
@@ -189,22 +190,22 @@
       <div>
           <h3>More homes you may like</h3>
           <div class="row">
-            <% if (@room.nearbys(10)) %>
+            <%# if (@room.nearbys(10)) %>
               <!-- for loop for geocode radius 10 km -->
-              <% for room in @room.nearbys(10).max(3).shuffle %>
+              <%# for room in @room.nearbys(10).max(3).shuffle %>
                 <div class="col-md-4">
                   <div class="panel panel-default">
                     <div class="panel-heading preview">
-                      <%= image_tag room.cover_photo(resize: '300x300>') %>
+                      <%#= image_tag room.cover_photo(resize: '300x300>') %>
                     </div>
                     <div class="panel-body">
-                      <%= link_to room.listing_name, room %><br>
-                      -- <%= room.distance.round(1) %> km --
+                      <%#= link_to room.listing_name, room %><br>
+                      -- <%#= room.distance.round(1) %> km --
                     </div>
                   </div>
                 </div>
-              <% end %>
-            <% end %>
+              <%# end %>
+            <%# end %>
           </div>
       </div>
 
