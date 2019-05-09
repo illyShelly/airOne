@@ -1,4 +1,4 @@
-<% if current_user == @user %>
+<%# if current_user == @user %>
   <div class="container">
       <div class="row">
         <div class="col-md-3">
@@ -45,10 +45,24 @@
               </div>
             <% end %>
           </div>
+        <br>
+
+        <h4>Reviews From Guest (<%= @guest_reviews.count %>)</h4>
+        <div class="row">
+          <%= render "reviews/guest_list" %>
         </div>
+        <br>
+        <hr>
+
+        <h4>Reviews From Host (<%= @host_reviews.count %>)</h4>
+        <div class="row">
+          <%= render "reviews/host_list" %>
+        </div>
+
       </div>
+    </div>
   </div>
-<% end %>
+<%# end %>
 
 <!-- solve privacy in view and controller - alert and redirect to home -->
 <!-- if user sign up with email -> confirmation_token was used; provider e.x.: FB, github -->

@@ -37,7 +37,7 @@ class GuestReviewsController < ApplicationController
     @guest_review = Review.find(params[:id])
     @guest_review.destroy
 
-    redirect_back(fallback_location: request.referer, notice: "Removed...!")
+    redirect_back(fallback_location: request.referer, notice: "Review was removed")
   end
 
   private

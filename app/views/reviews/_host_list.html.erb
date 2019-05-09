@@ -1,0 +1,33 @@
+<!-- host reviews about guest -->
+<% if @host_reviews.count == 0 %>
+  <div class="text-center">
+    <h5>There are no reviews yet</h5>
+  </div>
+<% else %>
+
+  <!-- order reviews from new to old -->
+  <% @host_reviews.order(id: :desc).each do |rev| %>
+    <hr>
+    <div class="row">
+      <div class="col-md-3 text-center">
+        <!-- instead user we use host -->
+        <%= image_tag avatar_url(rev.host), class: 'avatar' %><br><br>
+        <strong><%= rev.host.fullname %></strong>
+      </div>
+      <div class="col-md-9">
+        <div><%= rev.star %></div>
+        <!-- if user is login && is also host who wrote review -->
+        <% if current_user && current_user == rev.host %>
+          <span class="pull-right">
+            <%= link_to rev, method: :delete, data: { confirm: "Are you sure?"} do %>
+              <i class="fa fa-trash fa-lg"></i>
+            <% end %>
+          </span>
+        <% end %>
+      </div>
+       <!-- 2019-05-08 16:42:12 UTC -->
+      <div><%= rev.created_at.strftime("%v") %></div>
+      <div><%= rev.comment %></div>
+    </div>
+  <% end %>
+<% end %>

@@ -29,6 +29,7 @@ class RoomsController < ApplicationController
 
   def show
     @photos = @room.images
+    @guest_reviews = @room.guest_reviews
     # # for partial reservation's form
     # @reservation = Reservation.new
     # # assign room's id
