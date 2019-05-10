@@ -36,7 +36,8 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'omniauth-facebook'
 gem "aws-sdk-s3", require: false
 gem 'geocoder'
-
+# searching
+gem 'ransack', github: 'activerecord-hackery/ransack'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
