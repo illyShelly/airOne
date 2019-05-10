@@ -11,8 +11,17 @@
 
 #right {
   position: fixed;
-  top: 0;
+  // height of navbar or use z-index
+  top: 60px;
   right: 0;
   width: 450px;
   height: 100%;
+}
+
+.map_price {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  // color: $cyan;
+  color: #00bcd4;
 }
