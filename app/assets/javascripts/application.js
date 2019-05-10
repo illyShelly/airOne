@@ -12,10 +12,10 @@
 //
 
 //= require rails-ujs
-//= require bootstrap-sprockets
-//= require activestorage
 //= require jquery
 //= require jquery-ui/widgets/datepicker
 //= require jquery.raty
+//= require bootstrap-sprockets
+//= require activestorage
 //= require turbolinks
 //= require_tree .
