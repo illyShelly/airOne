@@ -32,13 +32,13 @@
     </div>
 
     <script>
-    $('#star_<%= rev.id %>').raty({
-      // path to images of starts
-      path: '/assets',
-      // cannom change in show page stars
-      readOnly: true,
-      score: <%= rev.star %>
-    })
+      $('#star_<%= rev.id %>').raty({
+        // path to images of starts
+        path: '/assets',
+        // cannom change in show page stars
+        readOnly: true,
+        score: <%= rev.star %>
+      });
   </script>
 
   <% end %>
