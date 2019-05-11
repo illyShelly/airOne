@@ -151,8 +151,12 @@
       <div class="row">
 
         <div id="map" style="width: 100%; height: 400px"></div>
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_BROWSER_KEY']}&v=3&callback=initialize"></script>
-<!-- &v=3&callback=initialize -->
+        <!-- PROBLEM in promise with  &v=3&callback=initialize -->
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_API_BROWSER_KEY']%>"></script>
+
+        <!-- not right with $ is not define var -->
+          <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=${ENV['GOOGLE_API_BROWSER_KEY']}&v=3&callback=initialize"></script> -->
+
         <script>
         var ready;
 
