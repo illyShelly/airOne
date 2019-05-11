@@ -20,6 +20,8 @@
             <div class="row">
               <div class="col-md-8">
                 <label>Price range:</label>
+                <!-- USING jquery slider -->
+                  <div id="slider-range"></div>
               </div>
               <div class="col-md-2">
                 <label>Min Price:</label>
@@ -222,3 +224,31 @@
     open = !open;
   });
 </script>
+
+<!-- script for slider -->
+<script type="text/javascript">
+  $(function() {
+    $('#q_price_gteq').val('25');
+    $('#q_price_lteq').val('600');
+
+    $('#slider-range').slider({
+      range: true,
+      min: 0,
+      max: 1000,
+      values: [100, 600],
+      slide: function(event, ui) {
+        // carefull 'g' as 'great'
+        $("#q_price_gteq").val(ui.values[0]);
+        $("#q_price_lteq").val(ui.values[1]);
+      }
+    });
+
+    // customize colours
+    // filled body of slider - darkblue
+    $(".ui-widget-header").css('background', '#08334c');
+    $(".ui-state-default, .ui-widget-content").css('background', 'white');
+    // border of slider
+    $(".ui-state-default, .ui-widget-content").css('border-color', '#07d9ff');
+  });
+</script>
+

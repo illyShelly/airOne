@@ -11,17 +11,19 @@
 }
 
 .sidebar-link {
-  color: #82888a;
+  color: $dark-blue;
+  // color: #82888a;
   text-decoration: none;
 }
 
 .sidebar-link:hover, .sidebar-link:focus {
-  color: #CACCCD;
+  color: $middle-gray;
+  // color: #bf2257;
   text-decoration: none;
 }
 
 .active.sidebar-link {
-  color: #565A5C;
+  color: $dark-blue;
   font-weight: bold;
   text-decoration: none;
 }

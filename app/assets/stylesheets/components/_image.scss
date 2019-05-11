@@ -10,12 +10,14 @@
 }
 
 a {
-  color: $middle-gray;
-  // color: #1c435b;
+  color: #1c435b;
   text-decoration: none;
 }
 
 a:hover, a:focus {
-  color: $dark-blue;
+  // color: #1b626f;
+   color: $middle-gray;
+  // color: #0688a0;
+  // color: #00bcd4;
   text-decoration: none;
 }
