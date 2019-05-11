@@ -228,14 +228,21 @@
 <!-- script for slider -->
 <script type="text/javascript">
   $(function() {
-    $('#q_price_gteq').val('25');
-    $('#q_price_lteq').val('600');
 
+    // real data from my DB
+    var max_price = <%= Room.maximum(:price) %>
+    var min_price = <%= Room.minimum(:price) %>
+
+    $('#q_price_gteq').val(min_price);
+    $('#q_price_lteq').val(max_price);
+
+    // slider showing from 0 to 1000 OR max_price + (some range e.x: +600)
     $('#slider-range').slider({
       range: true,
       min: 0,
-      max: 1000,
-      values: [100, 600],
+      max: (max_price + 600),
+      // picked 'real value' from DB (min, max) and filled in price input
+      values: [min_price, max_price],
       slide: function(event, ui) {
         // carefull 'g' as 'great'
         $("#q_price_gteq").val(ui.values[0]);
