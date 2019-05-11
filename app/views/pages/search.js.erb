@@ -1,1 +1,4 @@
 $('#room_listing').html('<%= j render partial: "rooms/rooms_list", locals: { rooms: @arrRooms } %>')
+
+// update map -> server data @arrRooms to json data
+initialize(<%= raw @arrRooms.to_json %>)
