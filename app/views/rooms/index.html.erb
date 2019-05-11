@@ -20,7 +20,7 @@
                 <%#= image_tag room.images[0].variant(resize: '200x200>') if room.images.attached? %>
                 <!-- calling room's model method -->
                 <%= link_to room_path(room) do %>
-                  <%= image_tag room.cover_photo(resize: '170x100!>'), class: "image-present" %>
+                  <%= image_tag room.cover_photo(resize: '200x130!>'), class: "image-present" %>
                 <% end %>
               </div>
               <div class="col-md-7">

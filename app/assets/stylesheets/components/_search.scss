@@ -1,21 +1,30 @@
 #main {
-  height: 100%;
-  overflow: hidden;
+  // height: 100%;
+  // overflow: hidden;
+  display: flex;
 }
 
 #left {
-  padding: 10px 400px 10px 20px;
-  overflow: scroll;
-  height: 100%;
+  flex-grow: 1;
+  padding: 0 40px;
+  // padding: 10px 400px 10px 20px;
+  // overflow: scroll;
+  // height: 100%;
 }
 
 #right {
-  position: fixed;
-  // height of navbar or use z-index
-  top: 60px;
-  right: 0;
-  width: 450px;
-  height: 100%;
+  flex: 0 0 450px;
+  // height: 100vh;
+  // top: 60px !important;
+  height: calc(100vh - 50px);
+  position: sticky !important;
+  // top: 0;
+  // position: fixed;
+  // // height of navbar or use z-index
+  // top: 60px;
+  // right: 0;
+  // width: 450px;
+  // height: 100%;
 }
 
 .map_price {
