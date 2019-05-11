@@ -20,7 +20,7 @@
           <div class="panel-body text-align-right">
             <span>
               <!-- remote true -> for AJAX to use -->
-              <%= link_to delete_attachment_room_path(img), method: :delete do %>
+              <%= link_to delete_attachment_room_path(img), remote: true, method: :delete do %>
                 <!-- <i class="fa fa-trash-o" aria-hidden="true"></i> -->
                 <i class="fa fa-trash" aria-hidden="true"></i>
                 <i class="fa fa-trash" aria-hidden="true"></i>

@@ -1,0 +1,15 @@
+<!-- removed from SEARCH PAGE @arrRooms -> locals: { rooms: @arrRooms }-->
+<% rooms.each do |room| %>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div>
+        <%= link_to room_path(room)do %>
+          <%= image_tag room.cover_photo(resize: '200x150!>'), class: 'image-present' %>
+        <% end %>
+      </div>
+      <div class="panel-body">
+        <%= link_to room.listing_name, room %>
+      </div>
+    </div>
+  </div>
+<% end %>

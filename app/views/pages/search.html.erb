@@ -14,8 +14,8 @@
         <br>
         <!-- colapseable part -->
         <div class="collapse" id="collapsePanel">
-
-          <%= search_form_for @search, url: search_path do |f| %>
+          <!-- once execute this form -> should run ajax request in search.js.erb -->
+          <%= search_form_for @search, url: search_path, remote: true do |f| %>
 
             <div class="row">
               <div class="col-md-8">
@@ -101,7 +101,7 @@
                 <%= check_box_tag "q[is_heating_eq]", true %> Heating
               </div>
               <div class="col-md-4">
-                <%= check_box_tag "q[is_air_eq]", true %> Aircondition
+                <%= check_box_tag "q[is_air_eq]", true %> Air-condition
               </div>
             </div>
             <hr>
@@ -117,21 +117,8 @@
 
 
         <!-- display search results -->
-        <div class="row">
-          <% @arrRooms.each do |room| %>
-            <div class="col-md-3">
-              <div class="panel panel-default">
-                <div>
-                  <%= link_to room_path(room)do %>
-                    <%= image_tag room.cover_photo(resize: '200x150!>'), class: 'image-present' %>
-                  <% end %>
-                </div>
-                <div class="panel-body">
-                  <%= link_to room.listing_name, room %>
-                </div>
-              </div>
-            </div>
-          <% end %>
+        <div class="row" id="room_listing">
+          <%= render partial: "rooms/rooms_list", locals: { rooms: @arrRooms} %>
         </div>
 
       </div>
