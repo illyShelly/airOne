@@ -23,8 +23,9 @@
     <!-- <div class="container"> makes session error shorter-->
       <%= yield %>
     <!-- </div> -->
-    <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
+    <%= javascript_include_tag "application" %>
     <!-- from app/assets/javascripts/application.js -->
+    <!-- , "data-turbolinks-track" => false -->
     <!-- , 'data-turbolinks-eval': false -->
     <%#= javascript_pack_tag "application" %>    <!-- from app/javascript/packs/application.js -->
   </body>
