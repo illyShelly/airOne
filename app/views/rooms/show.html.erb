@@ -238,8 +238,11 @@
 
     <!-- RIGHT PANEL -->
       <div class="col-md-4">
-        <!-- reservation form -->
-        <%= render 'reservations/form' %>
+        <!-- do not show calender for owner's flat -->
+        <% unless current_user == @room.user %>
+          <!-- reservation form -->
+          <%= render 'reservations/form' %>
+        <% end %>
       </div>
 
   </div>
