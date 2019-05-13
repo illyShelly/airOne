@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="home-space-top">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="center">
+          <%= image_tag avatar_url(current_user), class: "avatar-square-full" %>
+        </div>
+        <div class="panel-default">
+          <div class="panel-heading"><%= current_user.fullname %></div>
+        </div>
+        <div class="panel-body">
+          <ul class="sidebar-list">
+            <% if current_user.email %>
+              <li>Email Address <span class="pull-right babu-icon"><i class="fa fa-check-circle-o"></i></span></li>
+            <% end %>
+            <% if @current_user.provider %>
+              <li>Facebook <span class="pull-right babu-icon"><i class="fa fa-check-circle-o"></i></span></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <!-- Notification panel -->
+        <div class="panel panel-default">
+          <div class="panel-heading">Notifications</div>
+          <div class="panel-body">
+
+          </div>
+        </div>
+        <!-- Your listings -->
+        <div class="panel panel-default">
+          <div class="panel-heading">Your Listings (<%= @rooms.length %>)</div>
+          <div class="panel-body">
+            <%= render partial: 'rooms/rooms_list', locals: { rooms: @rooms } %>
+            <%#= render partial: "rooms/rooms_list", locals: { rooms: @rooms} %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -38,6 +38,9 @@ Rails.application.routes.draw do
   # get '/your_trips' => 'reservations#your_trips'
 
   get 'search', to: 'pages#search'
+
+   # ====== 2nd phase of the project ======
+  get 'dashboard', to: 'dashboards#index'
 end
 
 # for devise path: '' -> is not necessary write /users/signup...
@@ -46,3 +49,5 @@ end
 # new route added for deleting image attach => also like: delete :delete_attachment
 # your_trips as guest, your_reservations -> visiting my flats
 # search action on page controller
+# ======================================
+# create path /dashboard to get user's profile

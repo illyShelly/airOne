@@ -36,6 +36,7 @@
                 <strong>Hello, <%= current_user.fullname.capitalize %>!</strong>
               <% end %>
             </li>
+            <li><%= link_to "Dashboard", dashboard_path, class: "dropdown-item" %></li>
             <li>
               <%= link_to edit_user_registration_path do %>
                 <i class="fa fa-user"></i> <%= t(".edit_profile", default: "Edit Profile") %>
@@ -97,6 +98,22 @@
   </div>
 </div>
 
+<!-- show second nav if user is sign-in && page is not home page or show page rooms/01 etc. -->
+<% if (user_signed_in?) && !current_page?(root_path) && (!current_page?("/rooms/#{params[:id]}") || current_page?("/rooms/") )%>
+  <nav class="navbar navbar-default" style="background-color: white;">
+    <div class="container">
+      <ul class="nav navbar-nav">
+        <!-- display active if on that page -->
+        <li <% if current_page?(dashboard_path)%> class="active" <% end %> >
+          <%= link_to "Dashboard", dashboard_path %>
+        </li>
+        <li <% if current_page?(rooms_path)%> class="active" <% end %> >
+          <%= link_to "Manage listings", rooms_path %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<% end %>
 <!-- github nav -->
 <!-- <nav class="navbar navbar-default navbar-static-top navbar-margin-bottom"> -->
    <!--  <div class="container">
