@@ -19,7 +19,7 @@
               <!-- <div class="row"> -->
                 <div class="form-group">
                   <label>Address</label>
-                  <%= f.text_field :address, placeholder: "What is your address?", class: "form-control", required: true %>
+                  <%= f.text_field :address, placeholder: "What is your address?", class: "form-control", required: true, id: "autoaddress" %>
                 </div>
               <!-- </div> -->
 
@@ -34,3 +34,13 @@
       </div>
     </div>
 </div>
+
+<script>
+  function autocompleteSearch() {
+    var input = document.getElementById('autoaddress');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+  }
+</script>
+<!-- show address in en for eu market -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_API_BROWSER_KEY']%>&libraries=places&language=en&region=EU&callback=autocompleteSearch" async defer>
+</script>
