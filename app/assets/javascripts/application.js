@@ -11,12 +11,12 @@
 // about supported directives.
 //
 
-//= require rails-ujs
 //= require jquery
-//= require bootstrap-sprockets
 //= require jquery-ui/widgets/datepicker
 //= require jquery-ui/widgets/slider
 //= require jquery.raty
-//= require activestorage
+//= require rails-ujs
 //= require turbolinks
+//= require bootstrap-sprockets
+//= require activestorage
 //= require_tree .
