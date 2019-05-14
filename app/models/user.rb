@@ -32,6 +32,28 @@ class User < ApplicationRecord
       end
     end
   end
+
+  def generate_pin
+    # create new random pin number assign to user object's pin ...
+    self.pin = SecureRandom.hex(2)
+    self.phone_verified = false
+    save
+  end
+
+  # when user save his phone number -> twilio generate message send to him
+  def send_pin
+    @client = Twilio::REST::Client.new
+    @client.messages.create(
+      from: '+447429169492',
+      to: self.phone_number,
+      body: "Your pin is #{self.pin}"
+    )
+  end
+
+  # column changed to true if confirmed pin match our generated pin in DB
+  def verify_pin(entered_pin)
+    update(phone_verified: true) if self.pin == entered_pin
+  end
 end
 
 # 1. validation
