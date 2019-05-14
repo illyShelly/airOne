@@ -1,4 +1,7 @@
 class Room < ApplicationRecord
+  # instant booking -> if instant is 0 -> request booking otherwise instant
+  enum instant: { Request: 0, Instant: 1}
+
   belongs_to :user
 
   validates :home_type, presence: true
