@@ -14,7 +14,13 @@ Rails.application.routes.draw do
                 omniauth_callbacks: 'omniauth_callbacks',
                 registrations: 'registrations' }
 # devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    member do
+      post '/verify_phone_number' => 'users#verify_phone_number'
+      patch '/update_phone_number' => 'users#update_phone_number'
+    end
+  end
+
   resources :rooms, except: [:edit] do
     member do
       get 'listing'
