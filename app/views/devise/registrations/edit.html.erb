@@ -27,10 +27,6 @@
                 <%= f.text_field :fullname, autofocus: true, autocomplete: "fullname", placeholder: "John Smith", class: "form-control" %>
               </div>
 
-              <div class="form-group">
-                <%= f.text_field :phone_number, autofocus: true, placeholder: "Phone number", autocomplete: "phone_number", class: "form-control" %>
-              </div>
-
               <!-- diffrent type, define columns and rows -->
               <div class="form-group">
                 <%= f.text_area :description, rows: 5, cols: 25, autofocus: true, placeholder: "Description", class: "form-control" %>
@@ -69,13 +65,93 @@
                 <%= f.submit "Update", class: "btn btn-small" %>
               </div>
             <% end %>
-
             <br>
-            <br>
-            <h3>Cancel your profile</h3>
-              <p><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-cancel" %></p>
-             <!-- <i class="fas fa-redo"></i> <%#= link_to "Back", :back %> -->
           <!-- </div> -->
+        </div>
+      </div>
+
+      <br>
+
+      <!-- PHONE NUMBER - add & verify -->
+      <div class="panel panel-default">
+        <div class="panel-heading">Your Phone Number</div>
+        <div class="panel-body">
+          <!-- <div class="container"> -->
+            <% if !current_user.phone_number.blank? %>
+              <!-- 1. has already number -->
+              <h4><%= current_user.phone_number %></h4>
+              <button class="btn btn-default" data-toggle="modal" data-target="#update-phone">Update Phone</button>
+              <!-- 2. is not verified -->
+              <% if current_user.phone_verified == false %>
+                <button class="btn btn-form" style="margin-top: 15px;" data-toggle="modal" data-target="#verify-phone">Verify</button>
+              <% end %>
+              <!-- 3. add new phone number -->
+            <% else %>
+              <button class="btn btn-default" data-toggle="modal" data-target="#update-phone">Add Phone Number</button>
+            <% end %>
+          <!-- </div> -->
+        </div>
+      </div>
+      <br>
+
+    <!-- CANCEL Profile -->
+      <div class="panel panel-default">
+        <div class="panel-heading">Cancel your profile</div>
+
+          <div class="panel-body">
+            <!-- <h3>Cancel your profile</h3> -->
+            <p><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-cancel" %></p>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL FOR PHONE NUMBER - pop up for new or update existing-->
+  <div id="update-phone" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Phone Number</h4>
+        </div>
+
+        <div class="modal-body">
+          <%= form_for current_user, url: update_phone_number_user_path(current_user) do |f| %>
+            <div class="form-group">
+              <%= f.phone_field :phone_number, class: "form-control", placeholder: "Your Phone Number" %>
+            </div>
+            <!-- button -->
+            <div class="text-center">
+              <%= f.submit "Save", class: "btn btn-form" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL FOR VERIFICATION -->
+  <div id="verify-phone" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Verification Code</h4>
+        </div>
+
+        <div class="modal-body">
+          <!-- post method it's need to be define, value is empty -->
+          <%= form_for current_user, url: verify_phone_number_user_path(current_user), method: :post do |f| %>
+            <div class="form-group">
+              <%= f.text_field :pin, class: "form-control", placeholder: "Your PIN", value: "" %>
+            </div>
+            <!-- button -->
+            <div class="text-center">
+              <%= f.submit "Verify", class: "btn btn-form" %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

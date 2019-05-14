@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @host_reviews = Review.where(type: "HostReview", guest_id: @user.id)
   end
 
+  # TWILIO - sms
   def update_phone_number
     # added new or updated phone num in user profile
     current_user.update_attributes(user_params)
@@ -23,9 +24,9 @@ class UsersController < ApplicationController
     # send pin to user
     current_user.send_pin
 
-    redirect_to edit_user_registration_path, notice: "Your phone #{phone_number} is saved"
-  rescue Exception => error
-    redirect_to edit_user_registration_path, alert: "#{error.message}"
+    redirect_to edit_user_registration_path, notice: "Your phone is saved"
+  rescue Exception => e
+    redirect_to edit_user_registration_path, alert: "#{e.message}"
   end
 
   def verify_phone_number
