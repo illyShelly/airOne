@@ -19,9 +19,19 @@
           <%= @room.address %>
         </div>
         <div class="col-md-4 text-center">
-          <%= image_tag avatar_url(@room.user), class: "avatar-large" %>
-          <br><br>
-          <%= @room.user.fullname %>
+          <!-- if owner redirect to his all rooms page /rooms -->
+          <% if current_user == @room.user %>
+            <%= link_to rooms_path do %>
+            <%= image_tag avatar_url(@room.user), class: "avatar-large" %><br><br>
+            <%= @room.user.fullname %>
+            <% end %>
+          <!-- someone else room -> go to user's profile /users/:id -->
+          <% else %>
+            <%= link_to user_path(@room.user_id) do %>
+            <%= image_tag avatar_url(@room.user), class: "avatar-large" %><br><br>
+            <%= @room.user.fullname %>
+            <% end %>
+          <% end %>
         </div>
       </div>
       <hr>
