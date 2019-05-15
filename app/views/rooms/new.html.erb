@@ -26,6 +26,15 @@
 
             <div class="col-md-4 select">
               <div class="form-group">
+                <label>Booking Type: </label>
+                <!-- model: instant: { Request: 0, Instant: 1 }, by default we have Instant -->
+                <%= f.select :instant, Room.instants.map { |key, value| [key.humanize, key] }, selected: @room.instant, prompt: "Select...", class: "form-control" %>
+              </div>
+            </div>
+
+
+            <div class="col-md-4 select">
+              <div class="form-group">
                 <label>Accommodate: </label>
                 <!-- name and value -->
                 <%= f.select :accommodate, [["1", 1], ["2", 2], ["3", 3], ["4", 4]], id:"accommodate", prompt: "Select...", class: "form-control" %>

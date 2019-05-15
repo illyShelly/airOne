@@ -34,6 +34,15 @@
                   </div>
                 </div>
 
+                <!-- added for instant booking -->
+                <div class="col-md-4 select">
+                  <div class="form-group">
+                  <label>Booking Type: </label>
+                  <!-- in Room model: instant: { Request: 0, Instant: 1 }, by default we have Instant, when changed show actual value -->
+                  <%= f.select :instant, Room.instants.map { |key, value| [key.humanize, key] }, selected: @room.instant, prompt: "Select...", class: "form-control" %>
+                  </div>
+                </div>
+
                 <div class="col-md-4 select">
                   <div class="form-group">
                     <label>Accommodate: </label>

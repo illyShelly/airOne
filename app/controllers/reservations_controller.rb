@@ -20,9 +20,17 @@ class ReservationsController < ApplicationController
       @reservation.total = room.price * nights
 
       if @reservation.save
-        flash[:notice] = "Booking was successful"
-        # redirect_to room
+        # when request booking type
+        if room.Request?
+          flash[:notice] = "Request was sent"
+        else
+        # when instant booking
+        # @reservation.Approved! <=> @reservation.status = 1, @reservation.save
+          @reservation.Approved!
+          flash[:notice] = "Booking was approved successfully"
+        end
       else
+        flash[:alert] = "Cannot make a new reservation"
         render 'reservations/form'
       end
     end
