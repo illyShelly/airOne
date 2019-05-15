@@ -98,8 +98,8 @@
   </div>
 </div>
 
-<!-- show second nav if user is sign-in && page is not home page or show page rooms/01 etc. -->
-<% if (user_signed_in?) && !current_page?(root_path) && (!current_page?("/rooms/#{params[:id]}") || current_page?("/rooms/") )%>
+<!-- show second nav if user is sign-in && page is not "home page" or "show page" "search page" or rooms/01 etc. -->
+<% if (user_signed_in?) && !current_page?(root_path) && (!current_page?("/rooms/#{params[:id]}") && !current_page?(search_path) || current_page?("/rooms/") )%>
   <nav class="navbar navbar-default" style="background-color: white;">
     <div class="container">
       <ul class="nav navbar-nav">
