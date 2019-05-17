@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_reservation, only: [:approve, :decline]
 
   def create
     # take room_id from Reservation and get whole Room object
@@ -48,7 +49,21 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.all
   end
 
+  def approve
+    @reservation.Approved! #change status to approved and saved it to DB
+    redirect_to your_reservations_path
+  end
+
+  def decline
+    @reservation.Declined!
+    redirect_to your_reservations_path
+  end
+
   private
+
+  def set_reservation
+    @reservation = Reservation.find(params[:id]);
+  end
 
   def reservation_params
     params.require(:reservation).permit(:start_date, :end_date)
@@ -63,3 +78,5 @@ end
       # @reservation.total = @room.price * nights
       # @reservation.save
       # flash[:notice] = "Booked Successfully!"
+# ==================================================
+# decline or accept request booking - set reservation, methods -> routes

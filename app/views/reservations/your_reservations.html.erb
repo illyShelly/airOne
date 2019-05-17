@@ -26,6 +26,21 @@
                     <%= reservation.start_date.strftime('%a %d %b %y') %><br>
                      <!-- <span>-</span><br> -->
                     <%= reservation.end_date.strftime('%a %d %b %y') %>
+                  <!-- added status of booking -->
+                    <p><strong><%= reservation.status %></strong></p>
+                    <!-- icons to decline or approve booking -->
+                    <div class="form-inline">
+                      <% if reservation.Waiting? %>
+                        <%= link_to approve_reservation_path(reservation), method: :post do %>
+                          <i class="fa fa-thumbs-up fa-lg" id="icon-request-up"></i>
+                        <% end %>   |
+                         <%= link_to decline_reservation_path(reservation), method: :post do %>
+                          <i class="fa fa-thumbs-down fa-lg" id="icon-request-down"></i>
+                        <% end %>
+
+                      <% end %>
+                    </div>
+
                   </div>
                   <!-- 2. col - pic of booked flat as link -->
                   <div class="col-md-3">

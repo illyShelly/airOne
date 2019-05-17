@@ -47,6 +47,13 @@ Rails.application.routes.draw do
 
    # ====== 2nd phase of the project ======
   get 'dashboard', to: 'dashboards#index'
+
+  resources :reservations, only: [:approve, :decline] do
+    member do
+      post '/approve', to: 'reservations#approve'
+      post '/decline', to: 'reservations#decline'
+    end
+  end
 end
 
 # for devise path: '' -> is not necessary write /users/signup...
@@ -57,3 +64,4 @@ end
 # search action on page controller
 # ======================================
 # create path /dashboard to get user's profile
+# 2 actions for reservation -> on request booking

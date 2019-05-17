@@ -22,6 +22,8 @@
                 <%= mybooking.start_date.strftime('%a %d %b %y') %><br>
                 <!-- <span>-</span><br> -->
                 <%= mybooking.end_date.strftime('%a %d %b %y') %>
+              <!-- show status of booking - waiting, approved, accepted -->
+                <p><%= mybooking.status %></p>
               </div>
               <!-- 2. col - pic of room, cover_photo method -->
               <div class="col-md-3">
@@ -56,4 +58,5 @@
 </div>
 
 <!-- 1. similar layout like in rooms index -->
+<!-- show status of trip -> update db of previous data by default - waiting -->
 
