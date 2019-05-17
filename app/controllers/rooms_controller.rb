@@ -84,7 +84,8 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     today = Date.today
     # looking for start_date/end_date bigger than today date
-    reservations = @room.reservations.where("start_date >= ? OR end_date >= ?", today, today)
+    # update -> reservations are those with status = '1' as approved
+    reservations = @room.reservations.where("(start_date >= ? OR end_date >= ?) AND status = ?", today, today, 1)
     # push back data in json format
     render json: reservations
   end
@@ -105,8 +106,9 @@ class RoomsController < ApplicationController
   private
 
   # data from user -> params => check start and end with DB (dates between picked ones)
+  # update -> status = 1, as approved
   def is_conflict?(param_start, param_end, room_object)
-    check = room_object.reservations.where("? < start_date AND end_date < ?", param_start, param_end)
+    check = room_object.reservations.where("(? < start_date AND end_date < ?) AND status = ?", param_start, param_end, 1)
     check.size > 0 ? true : false
   end
 

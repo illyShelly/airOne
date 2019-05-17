@@ -33,13 +33,16 @@ class PagesController < ApplicationController
 
       @rooms.each do |room|
         # ransack result(rooms) => check if not booked in those start_date and end_date (date object)
+        # update -> for status = 1 as approved reservation
         not_available = room.reservations.where(
-          "(? <= start_date AND start_date <= ?)
+          "((? <= start_date AND start_date <= ?)
           OR (? <= end_date AND end_date <= ?)
-          OR (start_date < ? AND ? < end_date)",
+          OR (start_date < ? AND ? < end_date))
+          AND status = ?",
           start_date, end_date,
           start_date, end_date,
-          start_date, end_date
+          start_date, end_date,
+          1
         ).limit(1)
 
         if not_available.length > 0
