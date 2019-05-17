@@ -43,7 +43,10 @@
                </span>
               </div>
               <div class="col-md-3 text-right">
-                <%= render partial: "reviews/guest_form", locals: { reservation: mybooking } %>
+                <!-- display button to review Host after trip ends && if approved by host -->
+                <% if (mybooking.end_date < Date.today) && (mybooking.Approved?) %>
+                  <%= render partial: "reviews/guest_form", locals: { reservation: mybooking } %>
+                <% end %>
               </div>
 
             </div>

@@ -28,6 +28,7 @@
               <div class="form-group">
                 <label>Booking Type: </label>
                 <!-- model: instant: { Request: 0, Instant: 1 }, by default we have Instant -->
+                <!-- in Listing.html.erb -> we show the chosen value -> not still default one (@room.instant) => in Heroku ok -->
                 <%= f.select :instant, Room.instants.map { |key, value| [key.humanize, key] }, selected: "Instant", prompt: "Select...", class: "form-control" %>
               </div>
             </div>
