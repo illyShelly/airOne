@@ -65,9 +65,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # sms twilio service
 gem 'twilio-ruby'
 # full calendar for booking system
-gem 'fullcalendar-rails'
+gem 'fullcalendar-rails', '~> 3.4.0'
 # handle date & time
-gem 'momentjs-rails'
+gem 'momentjs-rails', '~> 2.17.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

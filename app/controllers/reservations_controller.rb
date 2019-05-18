@@ -34,6 +34,7 @@ class ReservationsController < ApplicationController
         flash[:alert] = "Cannot make a new reservation"
         render 'reservations/form'
       end
+
     end
     redirect_to room
   end

@@ -1,0 +1,80 @@
+.fc-day-header {
+  background-color: white;
+}
+// !! 'W'
+.fc-content.Waiting {
+  background-color: #e91e63;
+  // #e91e63
+  height: 40px;
+  border-radius: 25px;
+}
+
+// past month background look
+.fc-past {
+  // background-color: #f1f1f1;
+  background-color: #757575;
+  // #9d9d9dab;
+}
+// current month background look
+.fc-future {
+  background-color: white;
+}
+
+.fc-unthemed td.fc-today {
+  background-color: #85f485dd;
+  //
+}
+
+.fc-day {
+  position: relative;
+}
+
+.fc-content.Approved {
+  background-color: #00BCD4;
+  height: 40px;
+  border-radius: 25px;
+}
+
+// corners around booking
+.fc-event {
+  border: 0px;
+  background-color: transparent;
+}
+
+.fc-title {
+  font-size: 14px;
+  position: relative;
+  top: 5px;
+  left: 15px;
+}
+
+// // CALENDAR
+// .fc-content.Waiting {
+//   background-color: #C9CC6D;
+// }
+
+// .fc-past {
+//   background-color: lightgray;
+// }
+
+// .fc-day {
+//   position: relative;
+// }
+
+// .fc-content {
+//   background-color: #00A699;
+//   height: 40px;
+//   border-radius: 20px;
+// }
+
+// .fc-event {
+//   border: 0px;
+//   background-color: transparent;
+// }
+
+// .fc-title {
+//   font-size: 14px;
+//   position: relative;
+//   top: 7px;
+//   left: 20px;
+// }
