@@ -98,7 +98,7 @@
   </div>
 </div>
 
-<!-- show second nav if user is sign-in && page is not "home page" or "show page" "search page" or rooms/01 etc. -->
+<!-- show SECOND NAV if user is sign-in && page is not "home page" or "show page" "search page" or rooms/01 etc. -->
 <% if (user_signed_in?) && !current_page?(root_path) && (!current_page?("/rooms/#{params[:id]}") && !current_page?(search_path) || current_page?("/rooms/") )%>
   <nav class="navbar navbar-default" style="background-color: white;">
     <div class="container">
@@ -109,6 +109,10 @@
         </li>
         <li <% if current_page?(rooms_path)%> class="active" <% end %> >
           <%= link_to "Manage listings", rooms_path %>
+        </li>
+        <!-- link for calendar -->
+        <li <% if current_page?(host_calendar_path)%> class="active" <% end %> >
+          <%= link_to "Host Calendar", host_calendar_path %>
         </li>
       </ul>
     </div>

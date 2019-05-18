@@ -77,7 +77,7 @@
     // console.log(current); Sat Jun 01 2019 02:00:00 GMT+0200 (Central European Summer Time)
     var prev = new Date(current.getFullYear(), current.getMonth() - 1, 1)
     // console.log(prev); Wed May 01 2019 00:00:00 GMT+0200 (Central European Summer Time)
-    // as a start date we hit value of prev month with
+    // as a start date we hit value of prev month with: id: "start-date", value: params[:start_date]
     $('#start-date').val(moment(prev).format('YYYY-MM-DD'))
     // trigger the submit button above -> hidden field => run and get data from controller
     $('#start-date').trigger('change')
