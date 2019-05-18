@@ -2,7 +2,7 @@
   <!-- SOLVE to show in calender more than 1 room with dropdown menu -->
   <div class="row">
     <!-- using ransack gem -->
-    <%= search_form_for @search, class: 'form-group', url: host_calendar_path do |f| %>
+    <%= search_form_for @search, class: 'form-group', url: host_calendar_path, remote: true do |f| %>
 
       <div class="col-md-6 select">
         <div class="form-group">
@@ -15,7 +15,8 @@
         </div>
       </div>
 
-    <%= f.hidden_field :start_date, id: "start-date", value: params[:start_date] %>
+    <!-- trigger this by function below -->
+    <%= f.hidden_field :start_date, id: "start-date", value: params[:start_date], onchange: "$(this.form).submit()" %>
 
     <% end %>
   </div>
@@ -68,5 +69,24 @@
       `);
     }
 
+  });
+
+  $('.fc-prev-button').click(function() {
+    // start_date from hidden field
+    var current = new Date($('#start-date').val());
+    // console.log(current); Sat Jun 01 2019 02:00:00 GMT+0200 (Central European Summer Time)
+    var prev = new Date(current.getFullYear(), current.getMonth() - 1, 1)
+    // console.log(prev); Wed May 01 2019 00:00:00 GMT+0200 (Central European Summer Time)
+    // as a start date we hit value of prev month with
+    $('#start-date').val(moment(prev).format('YYYY-MM-DD'))
+    // trigger the submit button above -> hidden field => run and get data from controller
+    $('#start-date').trigger('change')
+  });
+
+$('.fc-next-button').click(function() {
+    var current = new Date($('#start-date').val());
+    var next = new Date(current.getFullYear(), current.getMonth() + 1, 1)
+    $('#start-date').val(moment(next).format('YYYY-MM-DD'))
+    $('#start-date').trigger('change')
   });
 </script>
