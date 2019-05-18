@@ -31,15 +31,21 @@ gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
 # ttimezone issue
 # gem 'momentjs-rails'
 
+# Devise login authentication
 gem 'devise'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'omniauth-facebook'
+
+# S3 service from AWS - Active storage
 gem "aws-sdk-s3", require: false
+# Use ActiveStorage variant
+gem 'mini_magick', '~> 4.8'
+
 gem 'geocoder'
-# searching
+
+# Ransack for search
 gem 'ransack', github: 'activerecord-hackery/ransack'
-# sms twilio
-gem 'twilio-ruby'
+
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -52,11 +58,16 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use ActiveStorage variant
-gem 'mini_magick', '~> 4.8'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+
+# SECOND ROUND
+# sms twilio service
+gem 'twilio-ruby'
+# full calendar for booking system
+gem 'fullcalendar-rails'
+# handle date & time
+gem 'momentjs-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

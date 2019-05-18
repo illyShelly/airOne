@@ -54,6 +54,8 @@ Rails.application.routes.draw do
       post '/decline', to: 'reservations#decline'
     end
   end
+
+  get '/host_calendar', to: 'calendars#host', as: 'host_calendar'
 end
 
 # for devise path: '' -> is not necessary write /users/signup...
