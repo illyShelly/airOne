@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def home
-    @rooms = Room.where(active: true).limit(3)
+    # show always different rooms on home page -> shuffle, then take 3
+    @rooms = Room.where(active: true).shuffle.take(3)
   end
 
   def search
