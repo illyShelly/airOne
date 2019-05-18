@@ -11,6 +11,13 @@ class CalendarsController < ApplicationController
     # if user does not have any room => assign nil, otherwise first room with it's 'id'
     params[:room_id] ||= @rooms[0] ? @rooms[0].id : nil
 
+    # Solve to show more rooms -> using ransack from dropdown menu
+    if params[:q].present?
+      params[:start_date] = params[:q][:start_date]
+      params[:room_id] = params[:q][:room_id]
+    end
+    @search = Reservation.ransack(params[:q])
+
     if params[:room_id]
       @room = Room.find(params[:room_id])
       # parse data in Date format

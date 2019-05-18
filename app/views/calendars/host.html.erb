@@ -1,4 +1,25 @@
 <div class="container">
+  <!-- SOLVE to show in calender more than 1 room with dropdown menu -->
+  <div class="row">
+    <!-- using ransack gem -->
+    <%= search_form_for @search, class: 'form-group', url: host_calendar_path do |f| %>
+
+      <div class="col-md-6 select">
+        <div class="form-group">
+          <label>Your Flats</label>
+          <!-- room_id select in the form - dropdown -->
+          <%= f.select :room_id, options_for_select(@rooms.collect { |u| [u.listing_name, u.id]}, params[:room_id]), {}, {
+            onchange: "$(this.form).submit()"
+            # class: "form-control"
+          } %>
+        </div>
+      </div>
+
+    <%= f.hidden_field :start_date, id: "start-date", value: params[:start_date] %>
+
+    <% end %>
+  </div>
+
   <div id="calendar"></div>
 </div>
 
@@ -9,7 +30,11 @@
 
   function showReservations(data) {
     return data.map(function (e) {
+      // Solve in DB booking ex. 15-05-2019 00:00:00
+      // check if booking is not just 1 day
       if (e['start_date'] !== e['end_date']) {
+        // if more than 1 day(night) -> add 1 day more
+        // end date convert to UTC format for different timezones
           e['end_date'] = moment.utc(e['end_date']).add(1, 'days')
       }
 
