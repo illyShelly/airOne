@@ -67,6 +67,12 @@
           </div>
         </a>
       `);
+    },
+    // added price to calender field
+    dayRender: function(date, cell) {
+      <% if !@room.blank? %>
+        cell.append('<span class="day-price">' + '$<%= @room.price %>' + '</span>')
+      <% end %>
     }
 
   });

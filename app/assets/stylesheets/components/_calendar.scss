@@ -1,3 +1,12 @@
+// price inside of cell
+.day-price {
+  position: absolute;
+  color: #d81b60;
+  bottom: 2px;
+  right: 2px;
+}
+
+
 .fc-day-header {
   background-color: white;
 }
@@ -9,10 +18,14 @@
   border-radius: 25px;
 }
 
+.fc-unthemed th, .fc-unthemed td {
+  border-color: $cyan;
+}
 // past month background look
 .fc-past {
   // background-color: #f1f1f1;
-  background-color: #757575;
+  background-color: #e7e7e7;
+  // #757575;
   // #9d9d9dab;
 }
 // current month background look

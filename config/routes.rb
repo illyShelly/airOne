@@ -34,6 +34,8 @@ Rails.application.routes.draw do
       get 'preview'
     end
     resources :reservations, only: [:create]
+    # special method to change price for room booking
+    resources :calendars
   end
 
   resources :guest_reviews, only: [:create, :destroy]
