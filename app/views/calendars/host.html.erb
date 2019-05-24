@@ -85,13 +85,54 @@
     },
     selectable: true,
     select: function(start, end, jsEvent, view) {
+      // stored in variable by clicking in Calender
       var start_date = moment(start);
       var end_date = moment(end).subtract(1, "days");
 
-      console.log("Start = " + start_date.format("YYYY-MM-DD"));
-      console.log("End = " + end_date.format("YYYY-MM-DD"));
+      // few things to consider:
+      // console.log("Start = " + start_date.format("YYYY-MM-DD"));
+      // console.log("End = " + end_date.format("YYYY-MM-DD"));
+      // do not show calender where no bookings yet
+      // not allowed to show calender for guest
+      // not changed past dates, already booked
+      // update datepicker inputs in modal
+      <% if @rooms.blank? %>
+        $('#calendar').fullCalendar('unselect');
+      <% end %>
 
-      $('#new_calendar').modal('show');
+      // CHECK if overlap existing reservation
+      // get all reservation from the calendar
+      var overlap = reservations.filter(function(e) {
+        var r_start_date = moment(e.start_date);
+        var r_end_date = moment(e.end_date).subtract(1, "days");
+
+        // compare start & end_date from reservations with those chosen above true if overlap --> length > 0
+        return (r_start_date.isSameOrBefore(end_date) && r_end_date.isSameOrAfter(start_date))
+        }).length > 0;
+
+        // if start_date is BEFOR today -> moment() OR overlap (whole calender is not able selected)
+        if (start.isBefore(moment()) || overlap) {
+          $('#calendar').fullCalendar('unselect')
+        }
+        // otherwise open modal
+        else {
+          $('#new_calendar').modal('show');
+
+          // grab chosen start_date and put into datepicker input field -> in that format
+          $('#calendar_start_date').datepicker({
+            dateFormat: "yy-mm-dd",
+            setDate: start_date
+          });
+
+          $('#calendar_start_date').val(start_date.format("YYYY-MM-DD"));
+
+          $('#calender_end_date').datepicker({
+            dateFormat: "yy-mm-dd",
+            setDate: end_date
+          });
+
+          $('#calendar_end_date').val(end_date.format("YYYY-MM-DD"));
+        }
     }
 
   });
