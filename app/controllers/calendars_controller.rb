@@ -2,6 +2,33 @@ class CalendarsController < ApplicationController
   before_action :authenticate_user!
   include ApplicationHelper # for email signin users-> without image
 
+  # calender info is from 1 cell in Fullcalender
+  def create
+    # parse data from params when picked data
+    date_from = Date.parse(calendar_params[:start_date])
+    date_to = Date.parse(calendar_params[:end_date])
+
+    # iterate through array
+    (date_from..date_to).each do |date_modal|
+      calendar = Calendar.where(room_id: params[:room_id], day: date_modal)
+
+      # for chosen dates, room already updated data -> Available etc. in modal
+      if calendar.present?
+        calendar.update_all(price: calendar_params[:price], status: calendar_params[:status])
+      else
+        # params for getting room_id !!!
+        Calendar.create(
+          room_id: params[:room_id],
+          day: date_modal,
+          price: calendar_params[:price],
+          status: calendar_params[:status]
+        )
+      end
+    end
+
+    redirect_to host_calendar_path
+  end
+
   def host
     # show all owners rooms
     @rooms = current_user.rooms
@@ -37,10 +64,19 @@ class CalendarsController < ApplicationController
                 .where('(start_date BETWEEN ? AND ?) AND status <> ?', first_of_month, end_of_month, 2)
 
       @events.each { |e| e.image = avatar_url(e)}
+      # update for Calendar -> modal changing cells
+      @days = Calendar.where("room_id = ? AND day BETWEEN ? AND ?", params[:room_id], first_of_month, end_of_month)
     else
       @room = nil
       @events = []
+      @days = []
     end
 
+  end
+
+  private
+
+  def calendar_params
+    params.require(:calendar).permit([:price, :status, :start_date, :end_date])
   end
 end

@@ -6,7 +6,6 @@
   right: 2px;
 }
 
-
 .fc-day-header {
   background-color: white;
 }
@@ -23,15 +22,13 @@
 }
 // past month background look
 .fc-past {
-  // background-color: #f1f1f1;
   background-color: #e7e7e7;
-  // #757575;
-  // #9d9d9dab;
 }
 // current month background look
-.fc-future {
-  background-color: white;
-}
+// it would rewrite my not_available days to white again
+// .fc-future {
+//   background-color: white;
+// }
 
 .fc-unthemed td.fc-today {
   background-color: #85f485dd;

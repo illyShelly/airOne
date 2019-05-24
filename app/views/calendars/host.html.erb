@@ -36,7 +36,10 @@
 <script>
   // create new var reservations in front with json data
   window.reservations = <%= raw @events.to_json %>
+  window.days = <%= raw @days.to_json  %> //used in line 87 with grep method
+
   console.log(reservations);
+  // console.log(days);
 
   function showReservations(data) {
     return data.map(function (e) {
@@ -79,10 +82,31 @@
     },
     // added price to calender field
     dayRender: function(date, cell) {
+      // after create calendar controller to update cell
+      // grep method -> pass collection days
+      var dayInfo = $.grep(days, function(e) {
+        // if date is equal to cell date
+        return e.day === date.format();
+      });
+
       <% if !@room.blank? %>
-        cell.append('<span class="day-price">' + '$<%= @room.price %>' + '</span>')
+        // UPDATE cells after MODAL submit with changes
+        if (dayInfo.length > 0) {
+          console.log(dayInfo[0]);
+          console.log(dayInfo[0].status);
+
+          if (dayInfo[0].status === "Not_Available") {
+            cell.addClass('fc-past');
+          } else {
+            cell.append('<span class="day-price">' + '€' + dayInfo[0].price + '</span>')
+          }
+        }
+        else {
+          cell.append('<span class="day-price">' + '€<%= @room.price %>' + '</span>')
+        }
       <% end %>
     },
+
     selectable: true,
     select: function(start, end, jsEvent, view) {
       // stored in variable by clicking in Calender
