@@ -28,7 +28,9 @@
 <!-- if not blank rooms -->
 
   <!-- added modal for special pricing -->
-  <%= render 'form' %>
+  <div id="form_modal">
+    <%= render partial: 'form', locals: { room: @room } %>
+  </div>
 
   <div id="calendar"></div>
 </div>
@@ -140,7 +142,7 @@
         }
         // otherwise open modal
         else {
-          $('#new_calendar').modal('show');
+          jQuery('#new_calendar').modal('show');
 
           // grab chosen start_date and put into datepicker input field -> in that format
           $('#calendar_start_date').datepicker({

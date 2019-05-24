@@ -25,8 +25,8 @@ class CalendarsController < ApplicationController
         )
       end
     end
-
-    redirect_to host_calendar_path
+    # redirect_to host_calendar_path
+    redirect_back(fallback_location: request.referer)
   end
 
   def host

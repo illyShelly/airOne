@@ -1,7 +1,11 @@
 // get all events from controller
 reservations = <%= raw @events.to_json %>
 // needs to update -> if disable future moths (in 2m) it is in DB but after refresh not visible
-days = <%= raw @days.to_json %>
+// days = <%= raw @days.to_json %>
+$('#form_modal').html("");
+$('#form_modal').append("<%= j render(:partial => 'form', locals: { room: @room} ) %>";
+
+$('#calendar').fullCalendar('getView').renderDates();
 
 $('#calendar').fullCalendar('removeEvents');
 // add above evens
