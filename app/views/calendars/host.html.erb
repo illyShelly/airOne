@@ -1,3 +1,6 @@
+<% if !@rooms.blank? %>
+
+
 <div class="container">
   <!-- SOLVE to show in calender more than 1 room with dropdown menu -->
   <div class="row">
@@ -20,6 +23,12 @@
 
     <% end %>
   </div>
+
+<% end %>
+<!-- if not blank rooms -->
+
+  <!-- added modal for special pricing -->
+  <%= render 'form' %>
 
   <div id="calendar"></div>
 </div>
@@ -73,6 +82,16 @@
       <% if !@room.blank? %>
         cell.append('<span class="day-price">' + '$<%= @room.price %>' + '</span>')
       <% end %>
+    },
+    selectable: true,
+    select: function(start, end, jsEvent, view) {
+      var start_date = moment(start);
+      var end_date = moment(end).subtract(1, "days");
+
+      console.log("Start = " + start_date.format("YYYY-MM-DD"));
+      console.log("End = " + end_date.format("YYYY-MM-DD"));
+
+      $('#new_calendar').modal('show');
     }
 
   });
