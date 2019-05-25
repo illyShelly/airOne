@@ -95,7 +95,7 @@ class ReservationsController < ApplicationController
       redirect_to your_reservations_path
     end
     rescue Stripe::CardError => e
-      reservation.declined!
+      reservation.Declined!
       flash[:alert] = e.message
   end
 
