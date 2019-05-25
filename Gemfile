@@ -69,6 +69,12 @@ gem 'fullcalendar-rails', '~> 3.4.0'
 # handle date & time
 gem 'momentjs-rails', '~> 2.17.1'
 
+gem 'stripe'
+# display nice creditcard form
+source 'http://insecure.rails-assets.org' do
+  gem 'rails-assets-card'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
