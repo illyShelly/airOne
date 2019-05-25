@@ -60,12 +60,12 @@ class UsersController < ApplicationController
     end
 
     # Add Credit Card to Stripe
-    month, year = params[:expire].split(/\/ /)
+    month, year = params[:expiry].split("/")
     new_token = Stripe::Token.create(:card => {
       :number => params[:number],
-      :exp_month => month,
-      :exp_year => year,
-      :cvv => params[:cvv]
+      :exp_month => month.to_i,
+      :exp_year => year.to_i, #The 'exp_year' parameter should be an integer (instead, is 21).
+      :cvc => params[:cvv]
     })
     customer.sources.create(source: new_token.id)
 
