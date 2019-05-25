@@ -50,27 +50,36 @@ class UsersController < ApplicationController
 
   def add_card
     if current_user.stripe_id.blank?
+
       customer = Stripe::Customer.create(
         email: current_user.email
         )
       current_user.stripe_id = customer.id
       current_user.save
+
+      # Add Credit Card to Stripe
+      customer.sources.create(source: params[:stripeToken])
     else
       customer = Stripe::Customer.retrieve(current_user.stripe_id)
+      customer.source = params[:stripeToken]
+      customer.save
     end
+    # does not work in request booking
+    # else
+    #   customer = Stripe::Customer.retrieve(current_user.stripe_id)
+    # end
 
-    # Add Credit Card to Stripe
-    month, year = params[:expiry].split("/")
-    new_token = Stripe::Token.create(:card => {
-      :number => params[:number],
-      :exp_month => month.to_i,
-      :exp_year => year.to_i, #The 'exp_year' parameter should be an integer (instead, is 21).
-      :cvc => params[:cvv]
-    })
-    customer.sources.create(source: new_token.id)
+    # # Add Credit Card to Stripe
+    # month, year = params[:expiry].split("/")
+    # new_token = Stripe::Token.create(:card => {
+    #   :number => params[:number],
+    #   :exp_month => month.to_i,
+    #   :exp_year => year.to_i, #The 'exp_year' parameter should be an integer (instead, is 21).
+    #   :cvc => params[:cvv]
+    # })
+    # customer.sources.create(source: new_token.id)
 
     flash[:notice] = "Your card is saved"
-
     redirect_to payment_method_path
 
   rescue Stripe::CardError => e
