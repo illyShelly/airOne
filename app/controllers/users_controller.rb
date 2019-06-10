@@ -58,21 +58,29 @@ class UsersController < ApplicationController
       current_user.stripe_id = customer.id
       current_user.save
 
+      # added after update stripe-form and JS
+      customer.sources.create(source: params[:stripeToken])
+
     else
+      # get customer from stripe / then update source with token / and save
       customer = Stripe::Customer.retrieve(current_user.stripe_id)
+      # added after update
+      customer.source = params[:stripeToken]
+      customer.save
     end
 
     # Add Credit Card to Stripe
-    month, year = params[:expiry].split("/")
+    # month, year = params[:expiry].split("/")
 
-    new_token = Stripe::Token.create(:card => {
-      :number => params[:number],
-      :exp_month => month.to_i,
-      :exp_year => year.to_i, #The 'exp_year' parameter should be an integer (instead, is 21).
-      :cvc => params[:cvv]
-    })
+    # new_token = Stripe::Token.create(:card => {
+    #   :number => params[:number],
+    #   :exp_month => month.to_i,
+    #   :exp_year => year.to_i, #The 'exp_year' parameter should be an integer (instead, is 21).
+    #   :cvc => params[:cvv]
+    # })
 
-    customer.sources.create(source: new_token.id)
+    # customer.sources.create(source: new_token.id)
+
 
     flash[:notice] = "Your card is saved"
     redirect_to payment_method_path

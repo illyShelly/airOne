@@ -59,7 +59,7 @@ class ReservationsController < ApplicationController
     # @reservation.Approved! #change status to approved and saved it to DB
     # redirect_to your_reservations_path
     charge(@reservation.room, @reservation)
-    redirect_to your_reservations_path
+    # redirect_to your_reservations_path
   end
 
   def decline
